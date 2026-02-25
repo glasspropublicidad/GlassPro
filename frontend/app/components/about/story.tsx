@@ -5,7 +5,7 @@ export function Story() {
                 <div className="md:w-1/2">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#373435]">Nuestra Historia</h2>
                     <p className="text-lg text-[#373435]/60 mb-4 leading-relaxed">
-                        GLASSPRO nace de la visión de transformar el mercado del cristal templado, y con el objetivo de convertirnos en un aliado estratégico para nuestros clientes, más que solo un proveedor.
+                        GlassPro nace de la visión de transformar el mercado del cristal templado, y con el objetivo de convertirnos en un aliado estratégico para nuestros clientes, más que solo un proveedor.
                     </p>
                     <p className="text-lg text-[#373435]/60 leading-relaxed">
                         Apostamos por la tecnología de maquinaria moderna, pero nuestro verdadero diferenciador es el compromiso inquebrantable con la calidad y los tiempos de entrega, garantizando que cada proyecto sea un éxito rotundo.

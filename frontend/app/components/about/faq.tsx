@@ -6,7 +6,7 @@ export function FAQ() {
                 <div className="space-y-4">
                     {[
                         {
-                            q: "¿Cuántos años de experiencia respaldan a GLASSPRO?",
+                            q: "¿Cuántos años de experiencia respaldan a GlassPro?",
                             a: "Contamos con más de 15 años de experiencia liderando proyectos de cristal templado a nivel nacional."
                         },
                         {

@@ -37,7 +37,7 @@ export function Footer() {
             <Link to="/" className="inline-flex items-center">
               <img
                 src="/logos/glasspro_logo.svg"
-                alt="GLASSPRO"
+                alt="GlassPro"
                 className="h-16 w-auto brightness-0 invert"
               />
             </Link>
@@ -107,7 +107,7 @@ export function Footer() {
 
         <div className="border-t border-white/15">
           <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-            <p>GLASSPRO (c) {year}. Todos los derechos reservados.</p>
+            <p>GlassPro (c) {year}. Todos los derechos reservados.</p>
             <p>Diseno y fabricacion de soluciones en vidrio.</p>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { Button } from "~/ui/button";
 
 export function Hero() {
     return (
-        <section className="relative w-full h-[150vh] md:h-screen min-h-[700px] flex items-center overflow-hidden bg-[#373435]">
+        <section className="relative w-full min-h-dvh flex items-center overflow-hidden bg-[#373435]">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
@@ -16,7 +16,7 @@ export function Hero() {
                 <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none"></div>
             </div>
 
-            <div className="container relative z-10 mx-auto px-6 pt-12 h-full flex flex-col justify-center">
+            <div className="container relative z-10 mx-auto px-6 pt-32 pb-16 flex flex-col justify-center">
                 <div className="max-w-4xl">
                 
                     <div className="space-y-4">
@@ -26,16 +26,16 @@ export function Hero() {
                         </h1>
 
                         <div className="flex items-center gap-4">
-                            <div className="h-px flex-1 max-w-[40px] bg-white/30"></div>
+                            <div className="hidden md:block h-px flex-1 max-w-[40px] bg-white/30"></div>
                             <h2 className="text-2xl md:text-3xl font-light text-white/90 tracking-widest uppercase">
                                 VISIONARY GLASS SOLUTIONS
                             </h2>
                         </div>
                     </div>
 
-                    <div className="mt-8 p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl max-w-2xl transition-transform duration-500">
+                    <div className="mt-8 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl max-w-2xl transition-transform duration-500">
                         <p className="text-lg md:text-xl text-white/80 leading-relaxed italic">
-                            "Innovación, confiabilidad y calidad en cada proyecto de cristal templado. Proyectamos confianza con maquinaria de punta y un acompañamiento técnico inigualable."
+                            Innovación, confiabilidad y calidad en cada proyecto de cristal templado. Proyectamos confianza con maquinaria de punta y un acompañamiento técnico inigualable.
                         </p>
                     </div>
 

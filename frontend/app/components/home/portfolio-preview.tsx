@@ -1,30 +1,114 @@
 import { Button } from "~/ui/button";
 
+const projects = [
+  {
+    title: "Fachada Corporativa Norte",
+    category: "Corporativo",
+    summary: "Cristal templado jumbo para fachada principal con integracion limpia de herrajes.",
+    href: "/portafolio",
+    image:
+      "/home-imgs/portfolio-1.avif",
+    layout: "lg:col-span-1",
+    imageHeight: "h-64",
+  },
+  {
+    title: "Sistema de Oficinas Ejecutivas",
+    category: "Residencial",
+    summary: "Division de espacios con cristal de alta claridad para oficinas y salas colaborativas.",
+    href: "/portafolio",
+    image:
+      "/home-imgs/portfolio-2.avif",
+    layout: "lg:col-span-2",
+    imageHeight: "h-64",
+  },
+  {
+    title: "Plaza Comercial Delta",
+    category: "Comercial",
+    summary: "Maquila y montaje de canceleria para pasillos de alto trafico y locales ancla.",
+    href: "/portafolio",
+    image:
+      "/home-imgs/portfolio-3.avif",
+    layout: "lg:col-span-2",
+    imageHeight: "h-72",
+  },
+  {
+    title: "Hotel Mirador Azul",
+    category: "Hospitalidad",
+    summary: "Canceleria para lobby y suites con acabados premium y especificacion arquitectonica.",
+    href: "/portafolio",
+    image:
+      "/home-imgs/portfolio-4.avif",
+    layout: "lg:col-span-1",
+    imageHeight: "h-72",
+  },
+];
+
 export function PortfolioPreview() {
   return (
-    <section className="w-full py-20 px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#373435]">Proyectos Destacados</h2>
-            <p className="text-xl text-[#373435]/60">Casos de éxito que demuestran nuestra capacidad.</p>
+    <section className="relative w-full overflow-hidden bg-white px-6 py-24">
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <span className="inline-flex rounded-full border border-[#0255D1]/15 bg-[#0255D1]/8 px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#0255D1]">
+              Portafolio
+            </span>
+            <h2 className="mt-5 text-4xl font-bold leading-tight text-[#373435] md:text-5xl">
+              Proyectos Destacados
+            </h2>
+            <p className="mt-4 text-lg text-[#373435]/65 md:text-xl">
+              Casos de exito que reflejan precision tecnica, diseno y ejecucion impecable.
+            </p>
           </div>
-          <a href="/portafolio" className="hidden md:block text-[#0255D1] font-medium hover:text-[#0C4C78] transition-colors">Ver Todo →</a>
+
+          <a
+            href="/portafolio"
+            className="group hidden items-center gap-2 rounded-full border border-[#0255D1]/25 px-5 py-2 text-sm font-semibold text-[#0255D1] transition-all hover:border-[#0255D1]/50 hover:bg-[#0255D1] hover:text-white md:inline-flex"
+          >
+            Ver todo
+            <span className="text-base transition-transform group-hover:translate-x-1">&rarr;</span>
+          </a>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="group cursor-pointer rounded-3xl overflow-hidden border border-[#0255D1]/10 hover:border-[#0255D1]/30 relative h-80 bg-gradient-to-br from-[#0255D1]/8 to-[#0C4C78]/12 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1C75BC]/20 to-[#0C4C78]/30 group-hover:opacity-80 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
-                <span className="text-[#1C75BC] text-sm font-bold mb-2 uppercase tracking-wide">Corporativo</span>
-                <h3 className="text-2xl font-bold text-white group-hover:text-[#a8d4ff] transition-colors">Proyecto {i}</h3>
-              </div>
-            </div>
-          ))}
+
+        <div className="rounded-2xl bg-white p-3 md:p-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <a
+                key={project.title}
+                href={project.href}
+                className={`group relative overflow-hidden rounded-xl border border-[#0255D1]/18 bg-white shadow-[0_14px_34px_rgba(12,76,120,0.12)] transition-all hover:-translate-y-0.5 hover:border-[#0255D1]/45 hover:shadow-[0_22px_42px_rgba(12,76,120,0.18)] ${project.layout}`}
+              >
+                <div className={`relative overflow-hidden ${project.imageHeight}`}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C4C78]/55 via-transparent to-[#0255D1]/25" />
+                </div>
+
+                <div className="p-5">
+                  <span className="inline-flex w-fit rounded-full border border-[#1C75BC]/35 bg-[#1C75BC]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#0C4C78]">
+                    {project.category}
+                  </span>
+
+                  <h3 className="mt-4 text-xl font-bold text-[#373435] transition-colors group-hover:text-[#0255D1]">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm text-[#373435]/72">{project.summary}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#1C75BC]">
+                    Ver proyecto
+                    <span className="text-base transition-transform group-hover:translate-x-1">&rarr;</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
+
         <div className="mt-8 text-center md:hidden">
           <Button href="/portafolio" variant="outline" size="md" className="inline-flex">
-            Ver Portfolio
+            Ver Portafolio
           </Button>
         </div>
       </div>

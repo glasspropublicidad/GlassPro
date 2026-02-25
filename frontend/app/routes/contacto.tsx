@@ -4,7 +4,7 @@ import { ContactForm } from "~/components/contact/contact-form";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Contacto | GLASSPRO" },
+        { title: "Contacto | GlassPro" },
         { name: "description", content: "Ponte en contacto con nosotros para tus proyectos de vidrio." },
     ];
 }

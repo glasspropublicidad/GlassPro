@@ -10,7 +10,7 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    text: "GLASSPRO nos ayudó a ejecutar un proyecto de cristal templado jumbo con precisión total. La calidad del acabado elevó por completo el resultado arquitectónico.",
+    text: "GlassPro nos ayudó a ejecutar un proyecto de cristal templado jumbo con precisión total. La calidad del acabado elevó por completo el resultado arquitectónico.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Briana Patton",
     role: "Operations Manager",
@@ -28,13 +28,13 @@ const testimonials: Testimonial[] = [
     role: "Customer Support Lead",
   },
   {
-    text: "La integración de cancelería y cristal quedó perfecta. GLASSPRO cumplió tiempos y entregó una instalación limpia, sólida y elegante.",
+    text: "La integración de cancelería y cristal quedó perfecta. GlassPro cumplió tiempos y entregó una instalación limpia, sólida y elegante.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Omar Raza",
     role: "CEO",
   },
   {
-    text: "Trabajar con GLASSPRO mejoró nuestra eficiencia en obra. Su logística y tiempos de entrega nos permitieron cerrar el proyecto antes de lo previsto.",
+    text: "Trabajar con GlassPro mejoró nuestra eficiencia en obra. Su logística y tiempos de entrega nos permitieron cerrar el proyecto antes de lo previsto.",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Zainab Hussain",
     role: "Project Manager",
@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
     role: "Sales Manager",
   },
   {
-    text: "Con GLASSPRO logramos un acabado profesional en fachada e interiores. La combinación de diseño, seguridad y durabilidad fue excelente.",
+    text: "Con GlassPro logramos un acabado profesional en fachada e interiores. La combinación de diseño, seguridad y durabilidad fue excelente.",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Hassan Ali",
     role: "E-commerce Manager",
@@ -168,11 +168,11 @@ export function Testimonials() {
             id="testimonials-heading"
             className="mt-6 text-center text-4xl font-extrabold tracking-tight text-neutral-900 md:text-5xl"
           >
-            What our users say
+            Lo que nuestros clientes dicen
           </h2>
           <p className="mt-5 max-w-sm text-center text-lg leading-relaxed text-neutral-500">
-            Discover how thousands of teams streamline their operations with our
-            platform.
+            Descubre cómo miles de equipos optimizan sus operaciones con nuestros
+            productos.
           </p>
         </div>
 

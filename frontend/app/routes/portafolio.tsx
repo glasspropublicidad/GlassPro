@@ -6,7 +6,7 @@ import { PortfolioCta } from "~/components/portfolio/portfolio-cta";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Portafolio | GLASSPRO" },
+        { title: "Portafolio | GlassPro" },
         { name: "description", content: "Explora nuestros casos de Ã©xito y proyectos." },
     ];
 }

@@ -10,7 +10,7 @@ export function ContactCTA() {
       <div className="max-w-5xl mx-auto relative z-10 text-center rounded-3xl bg-gradient-to-br from-[#0255D1] to-[#0C4C78] text-white p-16 shadow-[0_16px_64px_rgba(2,85,209,0.30)]">
         <h2 className="text-4xl md:text-6xl font-bold mb-6">¿Listo para innovar?</h2>
         <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-          Trae tu proyecto a GLASSPRO y experimenta el nivel de servicio y calidad que nos caracteriza como líderes en vidrio templado.
+          Trae tu proyecto a GlassPro y experimenta el nivel de servicio y calidad que nos caracteriza como líderes en vidrio templado.
         </p>
         <Button href="/contacto" variant="light" className="text-lg shadow-xl">
           Contáctanos Ahora

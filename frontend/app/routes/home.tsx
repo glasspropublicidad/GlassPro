@@ -11,7 +11,7 @@ import { ContactCTA } from "~/components/home/contact-cta";
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Inicio | GLASSPRO" },
+    { title: "Inicio | GlassPro" },
     { name: "description", content: "INOVATION GLASS SOLUTIONS · VISIONARY GLASS SOLUTIONS" },
   ];
 }

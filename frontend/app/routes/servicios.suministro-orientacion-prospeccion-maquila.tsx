@@ -10,8 +10,8 @@ import { ServiceCta } from "~/components/services/suministro/service-cta";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Suministro, OrientaciÃ³n, ProspecciÃ³n y Maquila | GLASSPRO" },
-        { name: "description", content: "AcompaÃ±amiento integral para tus proyectos de vidrio." },
+        { title: "Suministro, Orientación, Prospección y Maquila | GlassPro" },
+        { name: "description", content: "Acompañamiento integral para tus proyectos de vidrio." },
     ];
 }
 

@@ -53,6 +53,8 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     const blueGradId = `bg-${uid}`;
 
     const [svgSupported, setSvgSupported] = useState(false);
+    const [supportsBackdrop, setSupportsBackdrop] = useState(false);
+    const [isIOS, setIsIOS] = useState(false);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const feImageRef = useRef<SVGFEImageElement>(null);
@@ -107,7 +109,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         gaussianRef.current?.setAttribute('stdDeviation', displace.toString());
     };
 
-    // Detect SVG-backdrop support once (capability test, no UA sniffing)
+    // Detect runtime capabilities only after mount to keep SSR/client initial render identical
     useEffect(() => {
         if (typeof window === 'undefined') return;
         const div = document.createElement('div');
@@ -118,6 +120,16 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         const hasWebkit = div.style.getPropertyValue('-webkit-backdrop-filter').includes('url(');
 
         setSvgSupported(hasStandard || hasWebkit);
+
+        setSupportsBackdrop(
+            CSS.supports('backdrop-filter', 'blur(10px)') ||
+            CSS.supports('-webkit-backdrop-filter', 'blur(10px)')
+        );
+
+        setIsIOS(
+            /iP(hone|ad|od)/.test(navigator.userAgent) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        );
     }, [filterId]);
 
     // Re-apply whenever props change
@@ -133,15 +145,6 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         ro.observe(containerRef.current);
         return () => ro.disconnect();
     }, []);
-
-    const supportsBackdrop = typeof window !== 'undefined' && (
-        CSS.supports('backdrop-filter', 'blur(10px)') ||
-        CSS.supports('-webkit-backdrop-filter', 'blur(10px)')
-    );
-    const isIOS = typeof window !== 'undefined' && (
-        /iP(hone|ad|od)/.test(navigator.userAgent) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    );
 
     const containerStyle = (): React.CSSProperties => {
         const base: React.CSSProperties = {
@@ -249,7 +252,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
 const NAV_LINKS = [
     { href: '/', label: 'Inicio' },
-    { href: '/quienes-somos', label: 'Quiénes Somos' },
+    { href: '/quienes-somos', label: 'Nosotros' },
     { href: '/servicios', label: 'Servicios' },
     { href: '/portafolio', label: 'Portafolio' },
     { href: '/contacto', label: 'Contacto' },
@@ -280,6 +283,43 @@ export function Navbar() {
         <>
             <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50">
                 {/* ─── Main bar ─── */}
+                <div className={`md:hidden w-full transition-[border-radius] duration-300 ${mobileOpen ? 'rounded-2xl' : 'rounded-[210px]'}`}>
+                    <div
+                        className="w-full px-6 flex items-center rounded-[inherit] bg-white/30 backdrop-blur-md border border-white/10 shadow-2xl"
+                        style={{
+                            backdropFilter: 'blur(6px)',
+                            WebkitBackdropFilter: 'blur(6px)',
+                        }}
+                    >
+                        <Link to="/" className="flex items-center shrink-0">
+                            <img src="/logos/glasspro_logo.svg" alt="GlassPro" className="h-20 w-auto drop-shadow-sm" />
+                        </Link>
+
+                        <button
+                            type="button"
+                            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+                            aria-expanded={mobileOpen}
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="dialog"
+                            onClick={() => setMobileOpen(o => !o)}
+                            className="ml-auto flex flex-col justify-center items-center w-10 h-10 gap-[5px] shrink-0 rounded-xl transition-colors hover:bg-blue-50/60"
+                        >
+                            <span
+                                className="block w-6 h-[2px] bg-[#373435] rounded-full origin-center transition-all duration-300"
+                                style={mobileOpen ? { transform: 'translateY(7px) rotate(45deg)' } : {}}
+                            />
+                            <span
+                                className="block w-6 h-[2px] bg-[#373435] rounded-full transition-all duration-300"
+                                style={mobileOpen ? { opacity: 0, transform: 'scaleX(0)' } : {}}
+                            />
+                            <span
+                                className="block w-6 h-[2px] bg-[#373435] rounded-full origin-center transition-all duration-300"
+                                style={mobileOpen ? { transform: 'translateY(-7px) rotate(-45deg)' } : {}}
+                            />
+                        </button>
+                    </div>
+                </div>
+
                 <GlassSurface
                     borderRadius={mobileOpen ? 24 : 210}
                     borderWidth={0.01}
@@ -293,7 +333,7 @@ export function Navbar() {
                     backgroundOpacity={0.6}
                     saturation={1.2}
                     mixBlendMode="normal"
-                    className="w-full transition-[border-radius] duration-300"
+                    className="hidden md:block w-full transition-[border-radius] duration-300"
                     style={{
                         boxShadow: '0 4px 24px rgba(2,85,209,0.10), 0 1px 0 rgba(2,85,209,0.12) inset',
                         border: '1px solid rgba(2,85,209,0.13)',
@@ -313,30 +353,6 @@ export function Navbar() {
                                 </Link>
                             ))}
                         </nav>
-
-                        {/* Hamburger (mobile only) */}
-                        <button
-                            type="button"
-                            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-                            aria-expanded={mobileOpen}
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="dialog"
-                            onClick={() => setMobileOpen(o => !o)}
-                            className="md:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 gap-[5px] shrink-0 rounded-xl transition-colors hover:bg-blue-50/60"
-                        >
-                            <span
-                                className="block w-6 h-[2px] bg-[#373435] rounded-full origin-center transition-all duration-300"
-                                style={mobileOpen ? { transform: 'translateY(7px) rotate(45deg)' } : {}}
-                            />
-                            <span
-                                className="block w-6 h-[2px] bg-[#373435] rounded-full transition-all duration-300"
-                                style={mobileOpen ? { opacity: 0, transform: 'scaleX(0)' } : {}}
-                            />
-                            <span
-                                className="block w-6 h-[2px] bg-[#373435] rounded-full origin-center transition-all duration-300"
-                                style={mobileOpen ? { transform: 'translateY(-7px) rotate(-45deg)' } : {}}
-                            />
-                        </button>
                     </div>
                 </GlassSurface>
             </header>

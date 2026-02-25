@@ -10,7 +10,7 @@ import { ProjectCta } from "~/components/portfolio/project-cta";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Proyecto | GLASSPRO" },
+        { title: "Proyecto | GlassPro" },
         { name: "description", content: "Detalles del proyecto." },
     ];
 }

@@ -10,7 +10,7 @@ import { ServiceCta } from "~/components/services/cristal-templado-jumbo/service
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Cristal Templado Jumbo | GLASSPRO" },
+        { title: "Cristal Templado Jumbo | GlassPro" },
         { name: "description", content: "Expertos en cristal templado de medidas jumbo." },
     ];
 }

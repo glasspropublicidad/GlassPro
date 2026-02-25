@@ -4,7 +4,7 @@ import { LegalContent } from "~/components/legal/legal-content";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Aviso de Privacidad | GLASSPRO" },
+        { title: "Aviso de Privacidad | GlassPro" },
     ];
 }
 

@@ -1,6 +1,6 @@
 export function AboutHero() {
     return (
-        <section className="relative w-full h-[70vh] py-32 px-6 flex items-center justify-center bg-white border-b border-[#0255D1]/10 overflow-hidden">
+        <section className="relative w-full min-h-[70vh] pt-32 pb-16 px-6 flex items-center justify-center bg-white border-b border-[#0255D1]/10 overflow-hidden">
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#0255D1]/10 blur-3xl"></div>
             </div>

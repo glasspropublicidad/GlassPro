@@ -10,7 +10,7 @@ import { ServiceCta } from "~/components/services/herrajes/service-cta";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Venta de Herrajes | GLASSPRO" },
+        { title: "Venta de Herrajes | GlassPro" },
         { name: "description", content: "Venta de herrajes por mayoreo y menudeo." },
     ];
 }

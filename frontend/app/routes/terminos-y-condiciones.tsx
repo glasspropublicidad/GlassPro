@@ -4,7 +4,7 @@ import { LegalContent } from "~/components/legal/legal-content";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Términos y Condiciones | GLASSPRO" },
+        { title: "Términos y Condiciones | GlassPro" },
     ];
 }
 

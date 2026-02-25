@@ -10,7 +10,7 @@ import { ServicesCta } from "~/components/services/services-cta";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Servicios | GLASSPRO" },
+        { title: "Servicios | GlassPro" },
         { name: "description", content: "Nuestros servicios de cristal templado, herrajes y maquila." },
     ];
 }
