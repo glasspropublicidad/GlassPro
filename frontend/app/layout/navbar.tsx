@@ -107,16 +107,17 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         gaussianRef.current?.setAttribute('stdDeviation', displace.toString());
     };
 
-    // Detect support once
+    // Detect SVG-backdrop support once (capability test, no UA sniffing)
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-        const isFirefox = /Firefox/.test(navigator.userAgent);
-        if (!isSafari && !isFirefox) {
-            const div = document.createElement('div');
-            div.style.backdropFilter = `url(#${filterId})`;
-            setSvgSupported(div.style.backdropFilter !== '');
-        }
+        const div = document.createElement('div');
+        div.style.backdropFilter = `url(#${filterId})`;
+        div.style.setProperty('-webkit-backdrop-filter', `url(#${filterId})`);
+
+        const hasStandard = div.style.backdropFilter.includes('url(');
+        const hasWebkit = div.style.getPropertyValue('-webkit-backdrop-filter').includes('url(');
+
+        setSvgSupported(hasStandard || hasWebkit);
     }, [filterId]);
 
     // Re-apply whenever props change
@@ -133,7 +134,10 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         return () => ro.disconnect();
     }, []);
 
-    const supportsBackdrop = typeof window !== 'undefined' && CSS.supports('backdrop-filter', 'blur(10px)');
+    const supportsBackdrop = typeof window !== 'undefined' && (
+        CSS.supports('backdrop-filter', 'blur(10px)') ||
+        CSS.supports('-webkit-backdrop-filter', 'blur(10px)')
+    );
 
     const containerStyle = (): React.CSSProperties => {
         const base: React.CSSProperties = {
@@ -146,6 +150,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
                 ...base,
                 background: `hsl(0 0% 100% / ${backgroundOpacity})`,
                 backdropFilter: `url(#${filterId}) saturate(${saturation})`,
+                WebkitBackdropFilter: `url(#${filterId}) saturate(${saturation})`,
                 boxShadow: `0 0 2px 1px rgba(0,0,0,0.10) inset, 0 0 10px 4px rgba(0,0,0,0.05) inset,
              0 4px 16px rgba(17,17,26,0.08), 0 8px 32px rgba(17,17,26,0.06)`,
             };

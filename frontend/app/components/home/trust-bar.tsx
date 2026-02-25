@@ -3,7 +3,7 @@ export function TrustBar() {
       { label: "Años de experiencia", value: "+15" },
       { label: "Calidad Certificada", value: "ISO" },
       { label: "Acompañamiento", value: "100%" },
-      { label: "Capacidad Máxima", value: "Jumbo" },
+      { label: "Proyectos realizados", value: "+500" },
     ];
   
     return (
