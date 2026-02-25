@@ -21,8 +21,7 @@ export function ValueProps() {
                     </ul>
                 </div>
                 <div className="md:w-1/2 w-full h-96 rounded-3xl border border-[#0255D1]/15 p-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0255D1]/5 to-[#1C75BC]/10">
-                    <div className="absolute inset-0 backdrop-blur-3xl"></div>
-                    <span className="text-[#0255D1]/20 font-bold opacity-80 text-4xl tracking-widest">VISIONARY</span>
+                    <img src="/home-imgs/value-props.avif" alt="Value Props" className="w-full h-full object-cover rounded-xl" />
                 </div>
             </div>
         </section>

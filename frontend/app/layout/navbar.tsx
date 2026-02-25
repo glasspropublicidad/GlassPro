@@ -138,6 +138,10 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         CSS.supports('backdrop-filter', 'blur(10px)') ||
         CSS.supports('-webkit-backdrop-filter', 'blur(10px)')
     );
+    const isIOS = typeof window !== 'undefined' && (
+        /iP(hone|ad|od)/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    );
 
     const containerStyle = (): React.CSSProperties => {
         const base: React.CSSProperties = {
@@ -160,11 +164,15 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         if (supportsBackdrop) {
             return {
                 ...base,
-                background: 'rgba(255,255,255,0.25)',
-                backdropFilter: 'blur(12px) saturate(1.8)',
-                WebkitBackdropFilter: 'blur(12px) saturate(1.8)',
-                border: '1px solid rgba(255,255,255,0.25)',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 24px rgba(17,17,26,0.08)',
+                background: isIOS
+                    ? 'linear-gradient(135deg, rgba(255,255,255,0.44), rgba(255,255,255,0.20) 55%, rgba(219,234,254,0.28)), rgba(255,255,255,0.22)'
+                    : 'rgba(255,255,255,0.25)',
+                backdropFilter: isIOS ? 'blur(16px) saturate(2)' : 'blur(12px) saturate(1.8)',
+                WebkitBackdropFilter: isIOS ? 'blur(16px) saturate(2)' : 'blur(12px) saturate(1.8)',
+                border: isIOS ? '1px solid rgba(255,255,255,0.38)' : '1px solid rgba(255,255,255,0.25)',
+                boxShadow: isIOS
+                    ? 'inset 0 1px 0 rgba(255,255,255,0.72), inset 0 -1px 0 rgba(255,255,255,0.28), 0 10px 34px rgba(17,17,26,0.10), 0 3px 12px rgba(2,85,209,0.10)'
+                    : 'inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 24px rgba(17,17,26,0.08)',
             };
         }
 
@@ -176,11 +184,11 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     };
 
     return (
-        <div
-            ref={containerRef}
-            className={`relative flex items-center justify-center overflow-hidden transition-opacity duration-[260ms] ease-out ${className}`}
-            style={containerStyle()}
-        >
+            <div
+                ref={containerRef}
+                className={`relative flex items-center justify-center overflow-hidden transition-opacity duration-[260ms] ease-out ${className}`}
+                style={containerStyle()}
+            >
             {/* Hidden SVG filter */}
             <svg
                 className="w-full h-full pointer-events-none absolute inset-0 opacity-0 -z-10"
@@ -208,6 +216,24 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
                     </filter>
                 </defs>
             </svg>
+
+            {/* iOS/unsupported fallback highlights to mimic liquid glass depth */}
+            {!svgSupported && supportsBackdrop && (
+                <>
+                    <div
+                        className="pointer-events-none absolute inset-0 rounded-[inherit]"
+                        style={{
+                            background: 'linear-gradient(180deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.14) 56%, rgba(255,255,255,0.06) 100%)',
+                        }}
+                    />
+                    <div
+                        className="pointer-events-none absolute inset-0 rounded-[inherit]"
+                        style={{
+                            background: 'radial-gradient(120% 90% at 10% 0%, rgba(255,255,255,0.44) 0%, rgba(255,255,255,0) 56%)',
+                        }}
+                    />
+                </>
+            )}
 
             {/* Content slot */}
             <div className="w-full h-full rounded-[inherit] relative z-10">
