@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* ── GlassPro Brand Palette ── */
+  --color-brand-primary: #0255D1;
+  /* Azul primario   — CTAs, links, accents  */
+  --color-brand-secondary: #1C75BC;
+  /* Azul secundario — secondary buttons      */
+  --color-brand-deep: #0C4C78;
+  /* Azul profundo   — dark sections          */
+  --color-brand-text: #373435;
+  /* Gris carbón     — body text, headings    */
+}
+
+/* ── Base reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #373435;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Utility layer extras ── */
+@layer utilities {
+
+  /* Blue radial decoration helpers */
+  .bg-brand-radial {
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(2, 85, 209, 0.12) 0%, transparent 70%);
+  }
+
+  .bg-brand-radial-bottom {
+    background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(12, 76, 120, 0.10) 0%, transparent 70%);
+  }
+
+  /* Card surfaces — light glassmorphism on white */
+  .card-glass {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px) saturate(1.6);
+    -webkit-backdrop-filter: blur(12px) saturate(1.6);
+    border: 1px solid rgba(2, 85, 209, 0.12);
+    box-shadow: 0 2px 24px 0 rgba(2, 85, 209, 0.07), 0 1px 4px rgba(55, 52, 53, 0.06);
+  }
+
+  /* Gradient text */
+  .text-brand-gradient {
+    background: linear-gradient(135deg, #0255D1, #1C75BC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
