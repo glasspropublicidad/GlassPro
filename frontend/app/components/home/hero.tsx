@@ -1,64 +1,54 @@
 import { Button } from "~/ui/button";
 
 export function Hero() {
-    return (
-        <section className="relative w-full min-h-dvh flex items-center overflow-hidden bg-[#373435]">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="/home-imgs/hero-bg.avif"
-                    alt="Modern Glass Architecture"
-                    className="w-full h-full object-cover scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-                <div className="absolute inset-0 bg-[#0255D1]/10 mix-blend-overlay"></div>
-                {/* Bottom fade for smooth transition */}
-                <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none"></div>
+  return (
+    <section className="relative isolate flex min-h-[100svh] w-full items-end overflow-hidden bg-[#eef2f7] pt-28 md:items-center md:pt-32">
+      <div className="absolute inset-0 -z-20">
+        <img
+          src="/home-imgs/hero-bg.png"
+          alt="Lamina de vidrio templado"
+          className="h-full w-full object-cover object-[66%_center] md:object-center"
+        />
+      </div>
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#0C4C78]/10 via-[#0C4C78]/10 to-[#0C4C78]/0 " />
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-white via-white/75 to-transparent md:h-56" />
+      <div className="container relative z-10 mx-auto px-6 pb-16 md:pb-20">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="space-y-8 lg:col-span-7">
+            
+
+            <div className="space-y-5">
+              <h1 className="max-w-4xl text-5xl font-black leading-[0.9] tracking-[-0.04em] text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.42)] md:text-7xl lg:text-[6.3rem]">
+                INNOVATION
+                <br />
+                <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">GLASS</span> SOLUTIONS
+              </h1>
+              <p className="max-w-2xl text-base leading-relaxed text-[#373435]/95 drop-shadow-[0_6px_16px_rgba(0,0,0,0.38)] md:text-xl">
+                Diseñamos, fabricamos y suministramos soluciones de cristal templado con
+                estandares industriales, soporte tecnico y ejecucion confiable para
+                proyectos comerciales y residenciales.
+              </p>
             </div>
 
-            <div className="container relative z-10 mx-auto px-6 pt-32 pb-16 flex flex-col justify-center">
-                <div className="max-w-4xl">
-                
-                    <div className="space-y-4">
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white leading-none">
-                            INOVATION <br />
-                            <span className="text-brand-gradient drop-shadow-sm">GLASS</span> SOLUTIONS
-                        </h1>
-
-                        <div className="flex items-center gap-4">
-                            <div className="hidden md:block h-px flex-1 max-w-[40px] bg-white/30"></div>
-                            <h2 className="text-2xl md:text-3xl font-light text-white/90 tracking-widest uppercase">
-                                VISIONARY GLASS SOLUTIONS
-                            </h2>
-                        </div>
-                    </div>
-
-                    <div className="mt-8 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl max-w-2xl transition-transform duration-500">
-                        <p className="text-lg md:text-xl text-white/80 leading-relaxed italic">
-                            Innovación, confiabilidad y calidad en cada proyecto de cristal templado. Proyectamos confianza con maquinaria de punta y un acompañamiento técnico inigualable.
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-6 mt-12">
-                        <Button href="/servicios" variant="primary">
-                            <span className="relative z-10 flex items-center gap-2">
-                                Nuestros Servicios
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </span>
-                        </Button>
-
-                        <Button
-                            href="/contacto"
-                            variant="glass"
-                            className="text-center"
-                        >
-                            Cotizar Proyecto
-                        </Button>
-                    </div>
-                </div>
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <Button href="/servicios" variant="primary" className="px-8 py-5">
+                <span className="flex items-center gap-2">
+                  Nuestros Servicios
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </Button>
+              <Button href="/contacto" variant="light" className="px-8 py-5">
+                Cotizar Proyecto
+              </Button>
             </div>
-        </section>
-    );
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+  );
 }

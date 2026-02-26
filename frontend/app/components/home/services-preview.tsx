@@ -1,15 +1,20 @@
+import { motion } from "framer-motion";
+
 const services = [
   {
+    step: "01",
     title: "Cristal Templado Jumbo",
     desc: "Procesamos cristal en grandes dimensiones con precision milimetrica.",
     link: "/servicios/cristal-templado-jumbo",
   },
   {
+    step: "02",
     title: "Orientacion y Maquila",
     desc: "Acompanamiento integral, desde la prospeccion hasta la entrega final del proyecto.",
     link: "/servicios/suministro-orientacion-prospeccion-maquila",
   },
   {
+    step: "03",
     title: "Venta de Herrajes",
     desc: "Amplio catalogo de herrajes de alta calidad para mayoreo y menudeo.",
     link: "/servicios/venta-herrajes",
@@ -46,37 +51,31 @@ export function ServicesPreview() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="relative mt-12">
           {services.map((service, index) => (
-            <article
-              key={service.title}
-              className="group relative isolate overflow-hidden rounded-3xl border border-[#0255D1]/15 bg-white/90 p-8 shadow-[0_18px_48px_rgba(12,76,120,0.08)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#0255D1]/35 hover:shadow-[0_24px_52px_rgba(2,85,209,0.16)]"
-            >
-              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#0255D1]/18 blur-2xl" />
-                <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-[#0255D1]/8 to-transparent" />
-              </div>
+            <div key={service.title} className="relative min-h-[72vh] py-6 first:pt-0 last:pb-0" style={{ zIndex: index + 1 }}>
+              <motion.article
+                initial={{ opacity: 0, y: 90, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ amount: 0.42, once: false }}
+                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                className="sticky top-24 isolate overflow-hidden rounded-[2rem] border border-[#0255D1]/20 bg-[#edf2f7] p-8 shadow-[0_30px_70px_rgba(12,76,120,0.16)] md:p-12"
+              >
 
-              <div className="relative z-10 flex h-full flex-col justify-between">
-                <div>
-                  <span className="mb-6 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#0255D1]/20 bg-[#0255D1]/6 text-sm font-semibold text-[#0255D1]">
-                    {(index + 1).toString().padStart(2, "0")}
-                  </span>
-                  <h3 className="text-2xl font-bold text-[#373435] transition-colors group-hover:text-[#0255D1]">
-                    {service.title}
-                  </h3>
-                  <p className="mt-4 text-[#373435]/68">{service.desc}</p>
+                <div className="relative z-10 max-w-3xl">
+                  <p className="text-7xl font-black leading-none text-[#373435] md:text-8xl">{service.step}</p>
+                  <h3 className="mt-4 text-4xl font-bold leading-tight text-[#373435] md:text-6xl">{service.title}</h3>
+                  <p className="mt-5 max-w-xl text-xl leading-relaxed text-[#373435]/82 md:text-2xl">{service.desc}</p>
+                  <a
+                    href={service.link}
+                    className="mt-10 inline-flex items-center gap-2 rounded-full border border-black/20 bg-white/80 px-5 py-2 text-sm font-semibold uppercase tracking-[0.14em] text-black transition-all hover:border-black/40 hover:bg-white"
+                  >
+                    Ver detalles
+                    <span className="text-base">&rarr;</span>
+                  </a>
                 </div>
-
-                <a
-                  href={service.link}
-                  className="mt-10 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#0255D1] transition-colors hover:text-[#0C4C78]"
-                >
-                  Ver detalles
-                  <span className="text-lg transition-transform group-hover:translate-x-1">&rarr;</span>
-                </a>
-              </div>
-            </article>
+              </motion.article>
+            </div>
           ))}
         </div>
       </div>

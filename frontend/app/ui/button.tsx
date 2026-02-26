@@ -37,7 +37,7 @@ const variantClasses: Record<ButtonVariant, string> = {
     "group relative overflow-hidden bg-brand-primary text-white shadow-[0_10px_40px_-10px_rgba(2,85,209,0.5)] hover:scale-105",
   glass:
     "border border-white/20 bg-white/10 text-white backdrop-blur-md hover:scale-105 hover:bg-white/20",
-  light: "bg-white text-[#0255D1] shadow-lg hover:bg-white/90",
+  light: "bg-white text-[#0255D1] shadow-lg hover:scale-105 hover:bg-white/90",
   outline:
     "border border-[#0255D1]/20 text-[#0255D1] font-medium hover:text-[#0C4C78]",
 };

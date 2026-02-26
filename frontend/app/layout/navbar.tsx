@@ -292,7 +292,7 @@ export function Navbar() {
                         }}
                     >
                         <Link to="/" className="flex items-center shrink-0">
-                            <img src="/logos/glasspro_logo.svg" alt="GlassPro" className="h-20 w-auto drop-shadow-sm" />
+                            <img src="/logos/glasspro_logo.svg" alt="GlassPro" className="h-16 w-auto drop-shadow-sm" />
                         </Link>
 
                         <button
@@ -342,7 +342,7 @@ export function Navbar() {
                     <div className="w-full px-6 md:px-8 flex items-center">
                         {/* Logo */}
                         <Link to="/" className="flex items-center shrink-0">
-                            <img src="/logos/glasspro_logo.svg" alt="GlassPro" className="h-20 md:h-24 w-auto drop-shadow-sm" />
+                            <img src="/logos/glasspro_logo.svg" alt="GlassPro" className="h-20 w-auto drop-shadow-sm" />
                         </Link>
 
                         {/* Desktop nav */}
