@@ -5,7 +5,7 @@ export function Hero() {
     <section className="relative isolate flex min-h-[100svh] w-full items-end overflow-hidden bg-[#eef2f7] pt-28 md:items-center md:pt-32">
       <div className="absolute inset-0 -z-20">
         <img
-          src="/home-imgs/hero-bg.png"
+          src="/home-imgs/hero-bg.avif"
           alt="Lamina de vidrio templado"
           className="h-full w-full object-cover object-[66%_center] md:object-center"
         />
