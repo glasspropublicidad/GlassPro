@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { Button } from "~/ui/button";
 
 const services = [
   {
@@ -100,13 +101,15 @@ function StepSlide({
           <p className="text-4xl font-black leading-none tracking-[-0.04em] text-[#373435] md:text-7xl">{service.step}</p>
           <h3 className="mt-2 text-xl font-black leading-tight tracking-[-0.04em] text-[#373435] md:mt-4 md:text-4xl">{service.title}</h3>
           <p className="mt-3 max-w-xl text-lg leading-relaxed text-[#373435]/95 md:mt-5 md:text-2xl">{service.desc}</p>
-          <a
+          <Button
             href={service.link}
-            className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#0255D1]/30 bg-white/75 px-5 py-2 text-sm font-semibold text-[#373435] transition-all hover:border-[#47b6ff]/50 hover:bg-white md:mt-10"
+            variant="outline"
+            size="md"
+            className="mt-6 w-fit bg-white text-[#373435] hover:border-[#47b6ff]/50 hover:bg-white md:mt-10"
           >
             Ver detalles
             <span className="text-base">&rarr;</span>
-          </a>
+          </Button>
         </div>
         <div className="relative hidden h-full w-1/3 md:block">
           <img
