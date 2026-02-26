@@ -7,7 +7,7 @@ export function TrustBar() {
     ];
   
     return (
-      <section className="w-full px-6 -mt-12 relative z-30">
+      <section className="w-full px-6 pb-24 -mt-12 relative z-30">
         <div className="max-w-6xl mx-auto relative group">
           {/* Glow decorative background */}
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-75 transition duration-1000"></div>

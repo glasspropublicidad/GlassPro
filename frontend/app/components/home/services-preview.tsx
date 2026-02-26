@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 
 const services = [
   {
@@ -6,77 +7,163 @@ const services = [
     title: "Cristal Templado Jumbo",
     desc: "Procesamos cristal en grandes dimensiones con precision milimetrica.",
     link: "/servicios/cristal-templado-jumbo",
+    image: "/home-imgs/glass_premium_pic.avif",
   },
   {
     step: "02",
     title: "Orientacion y Maquila",
     desc: "Acompanamiento integral, desde la prospeccion hasta la entrega final del proyecto.",
     link: "/servicios/suministro-orientacion-prospeccion-maquila",
+    image: "/home-imgs/glass_premium_pic.avif",
   },
   {
     step: "03",
     title: "Venta de Herrajes",
     desc: "Amplio catalogo de herrajes de alta calidad para mayoreo y menudeo.",
     link: "/servicios/venta-herrajes",
+    image: "/home-imgs/glass_premium_pic.avif",
   },
 ];
 
-export function ServicesPreview() {
+function StepSlide({
+  service,
+  index,
+  total,
+  scrollYProgress,
+}: {
+  service: (typeof services)[number];
+  index: number;
+  total: number;
+  scrollYProgress: MotionValue<number>;
+}) {
+  // Calculate the animation phases
+  // We have (total - 1) transitions to make
+  const transitions = total - 1;
+  
+  // Entry phase (sliding in from bottom)
+  // Only for cards > 0
+  const enterStart = (index - 1) / transitions;
+  const enterEnd = index / transitions;
+  
+  // Exit phase (being covered by next card)
+  // Only for cards < total - 1
+  const coverStart = index / transitions;
+  const coverEnd = (index + 1) / transitions;
+
+  // Y position
+  const y = useTransform(
+    scrollYProgress,
+    index === 0 
+      ? [0, 1] // First card stays at top
+      : [enterStart, enterEnd], // Others slide in
+    index === 0 
+      ? ["0%", "0%"] 
+      : ["100%", "0%"]
+  );
+
+  // Scale effect
+  const scale = useTransform(
+    scrollYProgress,
+    // If it's the last card, it doesn't scale down.
+    // Otherwise, it scales down as the next one comes in.
+    index === total - 1 
+      ? [0, 1] 
+      : [coverStart, coverEnd],
+    index === total - 1 
+      ? [1, 1] 
+      : [1, 0.95]
+  );
+  
+  // Opacity - fade in slightly as it enters to avoid harsh lines?
+  // Or just keep it 1. Let's keep it simple first.
+  const opacity = useTransform(
+    scrollYProgress,
+    index === 0 ? [0, 0] : [enterStart, enterStart + 0.1], 
+    index === 0 ? [1, 1] : [0, 1]
+  );
+  // Actually, for card 0 opacity is always 1.
+  // For others, maybe just 1 is fine if they slide in.
+  // Let's stick to opacity 1 for all, but maybe handle the very first frame.
+
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-[#0255D1]/5 to-white px-6 py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-[#0255D1]/10 blur-3xl" />
-        <div className="absolute -bottom-24 left-1/4 h-64 w-64 rounded-full bg-[#1C75BC]/10 blur-3xl" />
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-t from-transparent to-white" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl">
-        <div className="mb-14 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <h2 className="mt-5 text-4xl font-bold leading-tight text-[#373435] md:text-5xl">
-              Nuestros Servicios
-            </h2>
-            <p className="mt-4 text-lg text-[#373435]/65 md:text-xl">
-              Soluciones integrales de acuerdo a tus necesidades especificas.
-            </p>
-          </div>
-
+    <motion.article
+      style={{ 
+        y, 
+        scale, 
+        zIndex: index,
+        opacity: index === 0 ? 1 : useTransform(scrollYProgress, [enterStart, enterStart + 0.05], [0, 1])
+      }}
+      className="absolute inset-0 flex items-center bg-white/38 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-white/45 shadow-lg overflow-hidden"
+    >
+      <div className="flex h-full w-full flex-col md:flex-row">
+        <div className="flex flex-1 flex-col justify-center px-6 py-8 md:p-10">
+          <p className="text-4xl font-black leading-none tracking-[-0.04em] text-[#373435] md:text-7xl">{service.step}</p>
+          <h3 className="mt-2 text-xl font-black leading-tight tracking-[-0.04em] text-[#373435] md:mt-4 md:text-4xl">{service.title}</h3>
+          <p className="mt-3 max-w-xl text-lg leading-relaxed text-[#373435]/95 md:mt-5 md:text-2xl">{service.desc}</p>
           <a
-            href="/servicios"
-            className="group inline-flex items-center gap-2 rounded-full border border-[#0255D1]/25 bg-white px-5 py-2 text-sm font-semibold text-[#0255D1] transition-all hover:border-[#0255D1]/45 hover:bg-[#0255D1] hover:text-white"
+            href={service.link}
+            className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-[#0255D1]/30 bg-white/75 px-5 py-2 text-sm font-semibold text-[#373435] transition-all hover:border-[#47b6ff]/50 hover:bg-white md:mt-10"
           >
-            Ver todos los servicios
-            <span className="text-base transition-transform group-hover:translate-x-1">&rarr;</span>
+            Ver detalles
+            <span className="text-base">&rarr;</span>
           </a>
         </div>
+        <div className="relative hidden h-full w-1/3 md:block">
+          <img
+            src={service.image}
+            alt={service.title}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent" />
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
-        <div className="relative mt-12">
-          {services.map((service, index) => (
-            <div key={service.title} className="relative min-h-[72vh] py-6 first:pt-0 last:pb-0" style={{ zIndex: index + 1 }}>
-              <motion.article
-                initial={{ opacity: 0, y: 90, scale: 0.97 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ amount: 0.42, once: false }}
-                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                className="sticky top-24 isolate overflow-hidden rounded-[2rem] border border-[#0255D1]/20 bg-[#edf2f7] p-8 shadow-[0_30px_70px_rgba(12,76,120,0.16)] md:p-12"
-              >
+export function ServicesPreview() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-                <div className="relative z-10 max-w-3xl">
-                  <p className="text-7xl font-black leading-none text-[#373435] md:text-8xl">{service.step}</p>
-                  <h3 className="mt-4 text-4xl font-bold leading-tight text-[#373435] md:text-6xl">{service.title}</h3>
-                  <p className="mt-5 max-w-xl text-xl leading-relaxed text-[#373435]/82 md:text-2xl">{service.desc}</p>
-                  <a
-                    href={service.link}
-                    className="mt-10 inline-flex items-center gap-2 rounded-full border border-black/20 bg-white/80 px-5 py-2 text-sm font-semibold uppercase tracking-[0.14em] text-black transition-all hover:border-black/40 hover:bg-white"
-                  >
-                    Ver detalles
-                    <span className="text-base">&rarr;</span>
-                  </a>
-                </div>
-              </motion.article>
+  return (
+    <section ref={sectionRef} className="relative h-[320vh] w-full bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="/home-imgs/services-preview.avif"
+            alt="Fondo de vidrio"
+            className="h-full w-full object-cover object-center"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-white/30" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/50 to-transparent md:h-32" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white via-white/50 to-transparent md:h-56" />
+        </div>
+
+        <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-4 py-8 md:px-6 md:py-14">
+          <div className="mb-8 text-center md:mb-12">
+            <h2 className="text-3xl font-black leading-[0.9] tracking-[-0.04em] text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.42)] md:text-5xl">
+              Nuestros <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">Servicios</span>
+            </h2>
+          </div>
+          
+          <div className="relative w-full">
+            <div className="relative min-h-[50vh] md:min-h-[60vh]">
+              {services.map((service, index) => (
+                <StepSlide
+                  key={service.title}
+                  service={service}
+                  index={index}
+                  total={services.length}
+                  scrollYProgress={scrollYProgress}
+                />
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
