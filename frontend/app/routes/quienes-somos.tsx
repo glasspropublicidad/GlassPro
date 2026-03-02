@@ -15,7 +15,7 @@ export function meta({ }: Route.MetaArgs) {
 
 export default function QuienesSomos() {
     return (
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col bg-gradient-to-b from-[#FAFCFF] via-white to-[#FAFCFF] overflow-x-hidden min-h-screen">
             <AboutHero />
             <Story />
             <Principles />
