@@ -12,13 +12,13 @@ import { ContactCTA } from "~/components/home/contact-cta";
 export function meta({ }: Route.MetaArgs) {
   return [
     { title: "Inicio | GlassPro" },
-    { name: "description", content: "INOVATION GLASS SOLUTIONS · VISIONARY GLASS SOLUTIONS" },
+    { name: "description", content: "Diseñamos, fabricamos y suministramos soluciones de cristal templado con estándares industriales — GlassPro" },
   ];
 }
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col">
       <Hero />
       <Intro />
       <TrustBar />

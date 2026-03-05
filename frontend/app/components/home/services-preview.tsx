@@ -7,22 +7,22 @@ const services = [
     step: "01",
     title: "Cristal Templado Jumbo",
     desc: "Procesamos cristal en grandes dimensiones con precision milimetrica.",
-    link: "/servicios/cristal-templado-jumbo",
-    image: "/home-imgs/glass_premium_pic.avif",
+    link: "/servicios",
+    image: "/home-imgs/jumbo_tempered.png",
   },
   {
     step: "02",
     title: "Orientacion y Maquila",
     desc: "Acompanamiento integral, desde la prospeccion hasta la entrega final del proyecto.",
-    link: "/servicios/suministro-orientacion-prospeccion-maquila",
-    image: "/home-imgs/glass_premium_pic.avif",
+    link: "/servicios",
+    image: "/home-imgs/maquila_meeting.png",
   },
   {
     step: "03",
     title: "Venta de Herrajes",
     desc: "Amplio catalogo de herrajes de alta calidad para mayoreo y menudeo.",
-    link: "/servicios/venta-herrajes",
-    image: "/home-imgs/glass_premium_pic.avif",
+    link: "/servicios",
+    image: "/home-imgs/herrajes_hardware.png",
   },
 ];
 
@@ -40,12 +40,12 @@ function StepSlide({
   // Calculate the animation phases
   // We have (total - 1) transitions to make
   const transitions = total - 1;
-  
+
   // Entry phase (sliding in from bottom)
   // Only for cards > 0
   const enterStart = (index - 1) / transitions;
   const enterEnd = index / transitions;
-  
+
   // Exit phase (being covered by next card)
   // Only for cards < total - 1
   const coverStart = index / transitions;
@@ -54,11 +54,11 @@ function StepSlide({
   // Y position
   const y = useTransform(
     scrollYProgress,
-    index === 0 
+    index === 0
       ? [0, 1] // First card stays at top
       : [enterStart, enterEnd], // Others slide in
-    index === 0 
-      ? ["0%", "0%"] 
+    index === 0
+      ? ["0%", "0%"]
       : ["100%", "0%"]
   );
 
@@ -67,19 +67,19 @@ function StepSlide({
     scrollYProgress,
     // If it's the last card, it doesn't scale down.
     // Otherwise, it scales down as the next one comes in.
-    index === total - 1 
-      ? [0, 1] 
+    index === total - 1
+      ? [0, 1]
       : [coverStart, coverEnd],
-    index === total - 1 
-      ? [1, 1] 
+    index === total - 1
+      ? [1, 1]
       : [1, 0.95]
   );
-  
+
   // Opacity - fade in slightly as it enters to avoid harsh lines?
   // Or just keep it 1. Let's keep it simple first.
   const opacity = useTransform(
     scrollYProgress,
-    index === 0 ? [0, 0] : [enterStart, enterStart + 0.1], 
+    index === 0 ? [0, 0] : [enterStart, enterStart + 0.1],
     index === 0 ? [1, 1] : [0, 1]
   );
   // Actually, for card 0 opacity is always 1.
@@ -88,9 +88,9 @@ function StepSlide({
 
   return (
     <motion.article
-      style={{ 
-        y, 
-        scale, 
+      style={{
+        y,
+        scale,
         zIndex: index,
         opacity: index === 0 ? 1 : useTransform(scrollYProgress, [enterStart, enterStart + 0.05], [0, 1])
       }}
@@ -153,7 +153,7 @@ export function ServicesPreview() {
               Nuestros <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">Servicios</span>
             </h2>
           </div>
-          
+
           <div className="relative w-full">
             <div className="relative min-h-[50vh] md:min-h-[60vh]">
               {services.map((service, index) => (

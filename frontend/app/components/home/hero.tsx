@@ -16,7 +16,7 @@ export function Hero() {
       <div className="container relative z-10 mx-auto px-6 pb-16 md:pb-20">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
           <div className="space-y-8 lg:col-span-7">
-            
+
 
             <div className="space-y-5">
               <h1 className="max-w-4xl text-5xl font-black leading-[0.9] tracking-[-0.04em] text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.42)] md:text-7xl lg:text-[6.3rem]">
@@ -24,7 +24,7 @@ export function Hero() {
                 <br />
                 <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">GLASS</span> SOLUTIONS
               </h1>
-              <p className="max-w-2xl text-base leading-relaxed text-[#373435]/95 drop-shadow-[0_6px_16px_rgba(0,0,0,0.38)] md:text-xl">
+              <p className="max-w-2xl text-base leading-relaxed text-[#373435]/90 md:text-xl">
                 Diseñamos, fabricamos y suministramos soluciones de cristal templado con
                 estandares industriales, soporte tecnico y ejecucion confiable para
                 proyectos comerciales y residenciales.
@@ -46,7 +46,7 @@ export function Hero() {
             </div>
           </div>
 
-          
+
         </div>
       </div>
     </section>

@@ -99,33 +99,33 @@ function TestimonialsColumn(props: {
                   scale: 1.03,
                   y: -8,
                   boxShadow:
-                    "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                    "0 25px 50px -12px rgba(12, 76, 120, 0.12), 0 10px 10px -5px rgba(12, 76, 120, 0.04), 0 0 0 1px rgba(2, 85, 209, 0.08)",
                   transition: { type: "spring", stiffness: 400, damping: 17 },
                 }}
                 whileFocus={{
                   scale: 1.03,
                   y: -8,
                   boxShadow:
-                    "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                    "0 25px 50px -12px rgba(12, 76, 120, 0.12), 0 10px 10px -5px rgba(12, 76, 120, 0.04), 0 0 0 1px rgba(2, 85, 209, 0.08)",
                   transition: { type: "spring", stiffness: 400, damping: 17 },
                 }}
-                className="group w-full max-w-xs cursor-default select-none rounded-3xl border border-neutral-200 bg-white p-10 shadow-lg shadow-black/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="group w-full max-w-xs cursor-default select-none rounded-3xl border border-[#0255D1]/10 bg-white p-10 shadow-[0_8px_30px_rgba(12,76,120,0.07)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0255D1]/20"
               >
                 <blockquote className="m-0 p-0">
-                  <p className="m-0 leading-relaxed text-neutral-600">{text}</p>
+                  <p className="m-0 leading-relaxed text-[#373435]/75">{text}</p>
                   <footer className="mt-6 flex items-center gap-3">
                     <img
                       width={40}
                       height={40}
                       src={image}
                       alt={`Avatar of ${name}`}
-                      className="h-10 w-10 rounded-full object-cover ring-2 ring-neutral-100 transition-all duration-300 ease-in-out group-hover:ring-primary/30"
+                      className="h-10 w-10 rounded-full object-cover ring-2 ring-[#0255D1]/10 transition-all duration-300 ease-in-out group-hover:ring-[#0255D1]/30"
                     />
                     <div className="flex flex-col">
-                      <cite className="not-italic leading-5 tracking-tight text-neutral-900">
+                      <cite className="not-italic leading-5 tracking-tight text-[#373435]">
                         {name}
                       </cite>
-                      <span className="mt-0.5 text-sm leading-5 tracking-tight text-neutral-500">
+                      <span className="mt-0.5 text-sm leading-5 tracking-tight text-[#373435]/55">
                         {role}
                       </span>
                     </div>
@@ -159,27 +159,27 @@ export function Testimonials() {
       >
         <div className="mx-auto mb-16 flex max-w-[540px] flex-col items-center justify-center">
           <div className="flex justify-center">
-            <div className="rounded-full border border-neutral-300 bg-neutral-100/50 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-neutral-600">
-              Testimonials
+            <div className="rounded-full border border-[#0255D1]/15 bg-[#0255D1]/[0.06] px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#0255D1]">
+              Testimonios
             </div>
           </div>
 
           <h2
             id="testimonials-heading"
-            className="mt-6 text-center text-4xl font-extrabold tracking-tight text-neutral-900 md:text-5xl"
+            className="mt-6 text-center text-4xl font-extrabold tracking-tight text-[#373435] md:text-5xl"
           >
             Lo que nuestros clientes dicen
           </h2>
-          <p className="mt-5 max-w-sm text-center text-lg leading-relaxed text-neutral-500">
-            Descubre cómo miles de equipos optimizan sus operaciones con nuestros
-            productos.
+          <p className="mt-5 max-w-sm text-center text-lg leading-relaxed text-[#373435]/55">
+            Profesionales de la construcción y el diseño confían en nuestra
+            calidad, precisión y acompañamiento.
           </p>
         </div>
 
         <div
           className="mt-10 flex max-h-[740px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
           role="region"
-          aria-label="Scrolling Testimonials"
+          aria-label="Testimonios en desplazamiento"
         >
           <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn
