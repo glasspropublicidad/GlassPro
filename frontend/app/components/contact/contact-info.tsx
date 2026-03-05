@@ -40,14 +40,14 @@ const CONTACT_DETAILS = [
     {
         icon: MapPinIcon,
         label: "Ubicación",
-        value: "Monterrey, Nuevo León, México",
+        value: "León, Guanajuato, México",
         href: undefined,
     },
     {
         icon: PhoneIcon,
         label: "Teléfono",
-        value: "+52 (81) 1234-5678",
-        href: "tel:+528112345678",
+        value: "+52 (477) 1234-5678",
+        href: "tel:+5247712345678",
     },
     {
         icon: MailIcon,
