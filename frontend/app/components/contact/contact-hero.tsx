@@ -3,8 +3,17 @@ import { motion } from "framer-motion";
 export function ContactHero() {
   return (
     <section className="relative w-full min-h-[70svh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-16 z-10">
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-20 bg-gradient-to-br from-[#0C4C78] via-[#0255D1] to-[#1C75BC]" />
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-30">
+        <img
+          src="/contact-imgs/contact-hero.png"
+          alt="Fondo Contacto"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-[#0C4C78]/60 via-[#0255D1]/20 to-[#1C75BC]/30" />
 
       {/* Animated orbs */}
       <motion.div
