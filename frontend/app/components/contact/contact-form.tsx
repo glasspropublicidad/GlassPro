@@ -52,12 +52,14 @@ type ActionData = {
 };
 
 const SERVICE_OPTIONS = [
-  "Cristal Templado",
-  "Vidrio Laminado",
-  "Cancelería de Aluminio",
-  "Barandales de Cristal",
-  "Muros Cortina",
-  "Espejos y Acabados",
+  "Venta de Vidrio por Hoja",
+  "Venta de Cristal",
+  "Vidrio Templado",
+  "Maquila de Vidrio",
+  "Canto Plano / Canto con Forma",
+  "Barrenos / Avellanes",
+  "Saques (Clip, Bisagra, Especiales)",
+  "Cortes Especiales",
   "Otro",
 ];
 

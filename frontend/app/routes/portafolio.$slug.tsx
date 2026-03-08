@@ -1,11 +1,10 @@
-﻿import type { Route } from "./+types/portafolio.$slug";
+import type { Route } from "./+types/portafolio.$slug";
 import { ProjectHero } from "~/components/portfolio/project-hero";
 import { ProjectGallery } from "~/components/portfolio/project-gallery";
 import { ProjectSummary } from "~/components/portfolio/project-summary";
 import { MaterialsAndSpecs } from "~/components/portfolio/materials-and-specs";
 import { Process } from "~/components/portfolio/process";
 import { RelatedProjects } from "~/components/portfolio/related-projects";
-import { Faq } from "~/components/portfolio/faq";
 import { ProjectCta } from "~/components/portfolio/project-cta";
 
 export function meta({ }: Route.MetaArgs) {
@@ -24,7 +23,6 @@ export default function PortafolioProyecto() {
             <MaterialsAndSpecs />
             <Process />
             <RelatedProjects />
-            <Faq />
             <ProjectCta />
         </div>
     );

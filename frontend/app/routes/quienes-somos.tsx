@@ -3,7 +3,7 @@ import { AboutHero } from "~/components/about/about-hero";
 import { Story } from "~/components/about/story";
 import { Principles } from "~/components/about/principles";
 import { Capabilities } from "~/components/about/capabilities";
-import { FAQ } from "~/components/about/faq";
+import { FAQ, ABOUT_FAQ_ITEMS } from "~/components/shared/faq";
 import { AboutCTA } from "~/components/about/about-cta";
 
 export function meta({ }: Route.MetaArgs) {
@@ -20,7 +20,7 @@ export default function QuienesSomos() {
             <Story />
             <Principles />
             <Capabilities />
-            <FAQ />
+            <FAQ items={ABOUT_FAQ_ITEMS} className="w-full py-32 px-6 relative z-10" />
             <AboutCTA />
         </div>
     );

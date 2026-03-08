@@ -6,6 +6,40 @@ export type FAQItem = {
     a: string;
 };
 
+export const COMMON_FAQ_ITEMS: FAQItem[] = [
+    {
+        q: "¿Cuál es el tiempo de entrega sobre procesos?",
+        a: "El tiempo de entrega sobre procesos es de 3 a 4 días.",
+    },
+    {
+        q: "¿Tiene costo la entrega a domicilio?",
+        a: "No, la entrega a domicilio no genera ningún costo.",
+    },
+    {
+        q: "¿Cuál es el alcance de entrega a domicilio?",
+        a: "Entregamos en toda la República Mexicana. Consultar costo de envío para entregas especiales.",
+    },
+];
+
+export const ABOUT_FAQ_ITEMS: FAQItem[] = [
+    {
+        q: "¿Cuántos años de experiencia respaldan a GlassPro?",
+        a: "Contamos con más de 15 años de experiencia liderando proyectos de cristal templado a nivel nacional, ejecutando con excelencia desde pequeños espacios hasta corporativos completos.",
+    },
+    {
+        q: "¿Cuentan con certificaciones de calidad?",
+        a: "Absolutamente, todos nuestros procesos están certificados bajo estrictas normas internacionales (ISO), garantizando la máxima seguridad y durabilidad en cada lámina de cristal.",
+    },
+    {
+        q: "¿Atienden proyectos residenciales y corporativos?",
+        a: "Sí, nuestra infraestructura nos permite escalar nuestra producción para abarcar diseños residenciales selectos y requerimientos de volumen a nivel corporativo.",
+    },
+    {
+        q: "¿Cuál es el formato máximo de cristal que trabajan?",
+        a: "Ofrecemos manufactura en medidas Jumbo, ideales para fachadas continuas, escaparates espectaculares y divisiones arquitectónicas de gran formato sin interrupciones.",
+    },
+];
+
 interface FAQProps {
     title?: string;
     subtitle?: string;

@@ -217,7 +217,7 @@ export async function action({ request }: Route.ActionArgs) {
 // ── Page Component ──────────────────────────────────────────────
 export default function Contacto() {
     return (
-        <div className="flex flex-col bg-gradient-to-b from-[#FAFCFF] via-white to-[#FAFCFF] overflow-x-hidden min-h-screen">
+        <div className="flex flex-col bg-gradient-to-b from-[#FAFCFF] via-white to-[#FAFCFF] overflow-x-clip min-h-screen">
             <ContactHero />
 
             <section className="w-full py-16 md:py-24 px-6 relative z-10">

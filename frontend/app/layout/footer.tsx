@@ -10,9 +10,9 @@ const QUICK_LINKS = [
 ];
 
 const SERVICE_LINKS = [
-  { href: "/servicios", label: "Cristal Templado Jumbo" },
-  { href: "/servicios", label: "Suministro y Maquila" },
-  { href: "/servicios", label: "Venta de Herrajes" },
+  { href: "/servicios", label: "Venta de Vidrio y Cristal" },
+  { href: "/servicios", label: "Vidrio Templado" },
+  { href: "/servicios", label: "Maquila de Vidrio" },
 ];
 
 const LEGAL_LINKS = [

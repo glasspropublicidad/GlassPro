@@ -5,22 +5,22 @@ import { Button } from "~/ui/button";
 const services = [
   {
     step: "01",
-    title: "Cristal Templado Jumbo",
-    desc: "Procesamos cristal en grandes dimensiones con precision milimetrica.",
+    title: "Venta de Vidrio y Cristal",
+    desc: "Vidrio por hoja en multiples espesores y cristales especializados: Filtrasol, Satinado, Reflecta y mas.",
     link: "/servicios",
     image: "/home-imgs/jumbo_tempered.png",
   },
   {
     step: "02",
-    title: "Orientacion y Maquila",
-    desc: "Acompanamiento integral, desde la prospeccion hasta la entrega final del proyecto.",
+    title: "Vidrio Templado",
+    desc: "Procesamos vidrio templado con tecnologia de ultima generacion para maxima resistencia y seguridad.",
     link: "/servicios",
     image: "/home-imgs/maquila_meeting.png",
   },
   {
     step: "03",
-    title: "Venta de Herrajes",
-    desc: "Amplio catalogo de herrajes de alta calidad para mayoreo y menudeo.",
+    title: "Maquila de Vidrio",
+    desc: "Canto plano, barrenos, avellanes, saques y cortes especiales con precision milimetrica.",
     link: "/servicios",
     image: "/home-imgs/herrajes_hardware.png",
   },

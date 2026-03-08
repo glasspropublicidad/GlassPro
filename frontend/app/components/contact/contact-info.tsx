@@ -45,9 +45,9 @@ const CONTACT_DETAILS = [
     },
     {
         icon: PhoneIcon,
-        label: "Teléfono",
-        value: "+52 (477) 1234-5678",
-        href: "tel:+5247712345678",
+        label: "Gerente General — Luis Hidalgo",
+        value: "477 629 43 09",
+        href: "tel:+524776294309",
     },
     {
         icon: MailIcon,
