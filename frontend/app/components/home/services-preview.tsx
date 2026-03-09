@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "~/ui/button";
 
 const services = [
@@ -26,148 +25,150 @@ const services = [
   },
 ];
 
-function StepSlide({
-  service,
-  index,
-  total,
-  scrollYProgress,
-}: {
-  service: (typeof services)[number];
-  index: number;
-  total: number;
-  scrollYProgress: MotionValue<number>;
-}) {
-  // Calculate the animation phases
-  // We have (total - 1) transitions to make
-  const transitions = total - 1;
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.18 },
+  },
+};
 
-  // Entry phase (sliding in from bottom)
-  // Only for cards > 0
-  const enterStart = (index - 1) / transitions;
-  const enterEnd = index / transitions;
+const cardVariants = {
+  hidden: { opacity: 0, y: 70 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
 
-  // Exit phase (being covered by next card)
-  // Only for cards < total - 1
-  const coverStart = index / transitions;
-  const coverEnd = (index + 1) / transitions;
-
-  // Y position
-  const y = useTransform(
-    scrollYProgress,
-    index === 0
-      ? [0, 1] // First card stays at top
-      : [enterStart, enterEnd], // Others slide in
-    index === 0
-      ? ["0%", "0%"]
-      : ["100%", "0%"]
-  );
-
-  // Scale effect
-  const scale = useTransform(
-    scrollYProgress,
-    // If it's the last card, it doesn't scale down.
-    // Otherwise, it scales down as the next one comes in.
-    index === total - 1
-      ? [0, 1]
-      : [coverStart, coverEnd],
-    index === total - 1
-      ? [1, 1]
-      : [1, 0.95]
-  );
-
-  // Opacity - fade in slightly as it enters to avoid harsh lines?
-  // Or just keep it 1. Let's keep it simple first.
-  const opacity = useTransform(
-    scrollYProgress,
-    index === 0 ? [0, 0] : [enterStart, enterStart + 0.1],
-    index === 0 ? [1, 1] : [0, 1]
-  );
-  // Actually, for card 0 opacity is always 1.
-  // For others, maybe just 1 is fine if they slide in.
-  // Let's stick to opacity 1 for all, but maybe handle the very first frame.
-
+function ServiceCard({ service }: { service: (typeof services)[number] }) {
   return (
-    <motion.article
-      style={{
-        y,
-        scale,
-        zIndex: index,
-        opacity: index === 0 ? 1 : useTransform(scrollYProgress, [enterStart, enterStart + 0.05], [0, 1])
-      }}
-      className="absolute inset-0 flex items-center bg-white/38 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-white/45 shadow-lg overflow-hidden"
-    >
-      <div className="flex h-full w-full flex-col md:flex-row">
-        <div className="flex flex-1 flex-col justify-center px-6 py-8 md:p-10">
-          <p className="text-4xl font-black leading-none tracking-[-0.04em] text-[#373435] md:text-7xl">{service.step}</p>
-          <h3 className="mt-2 text-xl font-black leading-tight tracking-[-0.04em] text-[#373435] md:mt-4 md:text-4xl">{service.title}</h3>
-          <p className="mt-3 max-w-xl text-lg leading-relaxed text-[#373435]/95 md:mt-5 md:text-2xl">{service.desc}</p>
-          <Button
-            href={service.link}
-            variant="outline"
-            size="md"
-            className="mt-6 w-fit bg-white text-[#373435] hover:border-[#47b6ff]/50 hover:bg-white md:mt-10"
-          >
-            Ver detalles
-            <span className="text-base">&rarr;</span>
-          </Button>
-        </div>
-        <div className="relative hidden h-full w-1/3 md:block">
+    <motion.article variants={cardVariants} className="group relative">
+      <a
+        href={service.link}
+        className="relative flex aspect-[3/4] flex-col overflow-hidden rounded-2xl md:rounded-3xl"
+      >
+        <div className="absolute inset-0">
           <img
             src={service.image}
             alt={service.title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent" />
         </div>
-      </div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-[#0a1628]/55 to-[#0a1628]/5 transition-colors duration-500 group-hover:from-[#0a1628]/95" />
+
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#47b6ff] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+        <span className="absolute right-4 top-3 select-none text-[7rem] font-black leading-none text-white/[0.06] md:right-6 md:top-4 md:text-[9rem]">
+          {service.step}
+        </span>
+
+        <div className="relative mt-auto p-6 md:p-8">
+          <span className="mb-3 inline-block rounded-full border border-[#47b6ff]/25 bg-[#47b6ff]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-[#47b6ff] backdrop-blur-sm">
+            Servicio {service.step}
+          </span>
+          <h3 className="text-2xl font-black leading-tight tracking-[-0.02em] text-white md:text-3xl">
+            {service.title}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-white/60 md:text-base">
+            {service.desc}
+          </p>
+          <div className="mt-5 flex items-center gap-2 text-sm font-bold text-[#47b6ff] transition-all duration-300 group-hover:gap-3">
+            Ver detalles
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </div>
+        </div>
+      </a>
     </motion.article>
   );
 }
 
 export function ServicesPreview() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
   return (
-    <section ref={sectionRef} className="relative h-[320vh] w-full bg-white">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/home-imgs/services-preview.avif"
-            alt="Fondo de vidrio"
-            className="h-full w-full object-cover object-center"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-white/30" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/50 to-transparent md:h-32" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white via-white/50 to-transparent md:h-56" />
-        </div>
+    <section className="relative w-full overflow-hidden bg-white py-24 md:py-36">
+      <div className="absolute inset-0">
+        <img
+          src="/home-imgs/services-preview.avif"
+          alt="Fondo de vidrio"
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-white/30" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/50 to-transparent md:h-32" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white via-white/50 to-transparent md:h-56" />
+      </div>
 
-        <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-4 py-8 md:px-6 md:py-14">
-          <div className="mb-8 text-center md:mb-12">
-            <h2 className="text-3xl font-black leading-[0.9] tracking-[-0.04em] text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.42)] md:text-5xl">
-              Nuestros <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">Servicios</span>
-            </h2>
-          </div>
+      <div className="relative mx-auto max-w-7xl px-4 md:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-14 text-center md:mb-20"
+        >
+          <h2 className="text-3xl font-black leading-[0.9] tracking-[-0.04em] text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.42)] md:text-5xl">
+            Nuestros{" "}
+            <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">
+              Servicios
+            </span>
+          </h2>
+        </motion.div>
 
-          <div className="relative w-full">
-            <div className="relative min-h-[50vh] md:min-h-[60vh]">
-              {services.map((service, index) => (
-                <StepSlide
-                  key={service.title}
-                  service={service}
-                  index={index}
-                  total={services.length}
-                  scrollYProgress={scrollYProgress}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6"
+        >
+          {services.map((service) => (
+            <ServiceCard key={service.title} service={service} />
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-12 flex justify-center md:mt-16"
+        >
+          <Button
+            href="/servicios"
+            variant="glass"
+            size="lg"
+            className="border-white/30 bg-white/15 text-white shadow-lg backdrop-blur-xl hover:bg-white/25"
+          >
+            Explorar todos los servicios
+            <svg
+              className="h-5 w-5 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

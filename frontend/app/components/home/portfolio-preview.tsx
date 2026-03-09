@@ -1,4 +1,23 @@
+import { motion } from "framer-motion";
 import { Button } from "~/ui/button";
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease },
+  },
+};
 
 const projects = [
   {
@@ -47,7 +66,13 @@ export function PortfolioPreview() {
   return (
     <section className="relative w-full overflow-hidden bg-white px-6 py-24">
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease }}
+          className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
+        >
           <div className="max-w-2xl">
             <span className="inline-flex rounded-full border border-[#0255D1]/15 bg-[#0255D1]/8 px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#0255D1]">
               Portafolio
@@ -67,14 +92,21 @@ export function PortfolioPreview() {
             Ver todo
             <span className="text-base transition-transform group-hover:translate-x-1">&rarr;</span>
           </a>
-        </div>
+        </motion.div>
 
         <div className="rounded-2xl bg-white p-3 md:p-4">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            variants={gridVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+          >
             {projects.map((project) => (
-              <a
+              <motion.a
                 key={project.title}
                 href={project.href}
+                variants={cardVariants}
                 className={`group relative overflow-hidden rounded-xl border border-[#0255D1]/18 bg-white shadow-[0_14px_34px_rgba(12,76,120,0.12)] transition-all hover:-translate-y-0.5 hover:border-[#0255D1]/45 hover:shadow-[0_22px_42px_rgba(12,76,120,0.18)] ${project.layout}`}
               >
                 <div className={`relative overflow-hidden ${project.imageHeight}`}>
@@ -101,16 +133,22 @@ export function PortfolioPreview() {
                     <span className="text-base transition-transform group-hover:translate-x-1">&rarr;</span>
                   </span>
                 </div>
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mt-8 text-center md:hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease, delay: 0.3 }}
+          className="mt-8 text-center md:hidden"
+        >
           <Button href="/portafolio" variant="outline" size="md" className="inline-flex">
             Ver Portafolio
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
