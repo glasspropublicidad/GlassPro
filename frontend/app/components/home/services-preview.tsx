@@ -4,7 +4,7 @@ import { Button } from "~/ui/button";
 const services = [
   {
     step: "01",
-    title: "Venta de Vidrio y Cristal",
+    title: "Venta de Vidrio",
     desc: "Vidrio por hoja en multiples espesores y cristales especializados: Filtrasol, Satinado, Reflecta y mas.",
     link: "/servicios",
     image: "/home-imgs/jumbo_tempered.png",

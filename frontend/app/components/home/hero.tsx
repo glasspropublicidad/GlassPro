@@ -42,6 +42,7 @@ export function Hero() {
         />
       </div>
 
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-white/55 md:hidden" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#0C4C78]/10 via-[#0C4C78]/10 to-[#0C4C78]/0" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-white via-white/75 to-transparent md:h-56" />
 

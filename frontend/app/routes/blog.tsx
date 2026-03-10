@@ -186,10 +186,21 @@ export default function Blog() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative flex min-h-[50vh] w-full items-end overflow-hidden bg-gradient-to-br from-[#0C4C78] via-[#0a3d66] to-[#082d4f] pt-32 pb-16 md:pb-20">
+      <section className="relative flex min-h-[65vh] w-full items-end overflow-hidden bg-[#0C4C78] pt-32 pb-16 md:pb-20">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="/hero-blog.avif"
+            alt="Blog GlassPro"
+            className="h-full w-full object-cover object-center"
+          />
+          {/* Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0C4C78]/80 via-[#0a3d66]/50 to-[#082d4f]/70" />
+        </div>
+
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 -right-32 h-[60vh] w-[60vh] rounded-full bg-[#0255D1]/15 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-[40vh] w-[40vh] rounded-full bg-[#47b6ff]/10 blur-3xl" />
+          <div className="absolute -top-32 -right-32 h-[60vh] w-[60vh] rounded-full bg-[#0255D1]/30 blur-3xl mix-blend-screen" />
+          <div className="absolute -bottom-20 -left-20 h-[40vh] w-[40vh] rounded-full bg-[#47b6ff]/20 blur-3xl mix-blend-screen" />
         </div>
 
         <div className="container relative z-10 mx-auto max-w-7xl px-6">
@@ -210,7 +221,7 @@ export default function Blog() {
               className="text-4xl font-black leading-[0.95] tracking-tighter text-white md:text-6xl lg:text-7xl"
             >
               Noticias &{" "}
-              <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#0255D1] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#47b6ff] bg-clip-text text-transparent">
                 Artículos
               </span>
             </motion.h1>
