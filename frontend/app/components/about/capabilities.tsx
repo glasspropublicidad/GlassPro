@@ -45,7 +45,7 @@ export function Capabilities() {
               Capacidad<br />Técnica<br /><span className="text-[#8fd7ff]">Sin Límites</span>
             </h2>
             <p className="text-white/80 text-lg leading-relaxed relative z-10">
-              Nuestra maquila industrial cuenta con equipamiento de la más alta gama, preparado para procesar cristales en formatos imponentes y acabados verdaderamente impecables.
+              Nuestra maquila industrial cuenta con equipamiento moderno, preparado para procesar cristales en formatos imponentes y acabados verdaderamente impecables.
             </p>
           </motion.div>
 
