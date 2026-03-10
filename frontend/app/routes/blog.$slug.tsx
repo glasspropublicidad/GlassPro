@@ -133,7 +133,7 @@ export default function BlogPost() {
     <div className="flex flex-col">
       {/* Hero */}
       <section className="relative flex min-h-[60vh] w-full items-end overflow-hidden pt-28 pb-16 md:pb-20">
-        {post.mainImage ? (
+        {post.mainImage?.asset ? (
           <div className="absolute inset-0 -z-20">
             <img
               src={urlFor(post.mainImage).width(1600).height(900).url()}

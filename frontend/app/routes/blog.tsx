@@ -70,7 +70,7 @@ function BlogCard({ post, index }: { post: Post; index: number }) {
         <div
           className={`relative w-full overflow-hidden ${isFeatured ? "aspect-[16/9]" : "aspect-[16/10]"}`}
         >
-          {post.mainImage ? (
+          {post.mainImage?.asset ? (
             <img
               src={urlFor(post.mainImage).width(800).height(500).url()}
               alt={post.mainImage.alt || post.title}
