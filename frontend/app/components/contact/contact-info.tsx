@@ -45,7 +45,7 @@ const CONTACT_DETAILS = [
     },
     {
         icon: PhoneIcon,
-        label: "Gerente General — Luis Hidalgo",
+        label: "Gerente de Ventas - Luis Hidalgo",
         value: "477 629 43 09",
         href: "tel:+524776294309",
     },
@@ -58,7 +58,7 @@ const CONTACT_DETAILS = [
     {
         icon: ClockIcon,
         label: "Horario",
-        value: "Lun—Vie: 8:00 AM — 6:00 PM",
+        value: "Lun—Vie: 9:00 AM — 6:00 PM · Sáb: 9:00 AM — 2:00 PM",
         href: undefined,
     },
 ];
