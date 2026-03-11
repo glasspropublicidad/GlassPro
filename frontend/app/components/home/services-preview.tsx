@@ -12,7 +12,7 @@ const services = [
   {
     step: "02",
     title: "Vidrio Templado",
-    desc: "Procesamos vidrio templado con tecnologia de ultima generacion para maxima resistencia y seguridad.",
+    desc: "Procesamos vidrio templado con horno de 6.00 x 2.80 m. Tecnología de última generación para máxima resistencia y seguridad.",
     link: "/servicios",
     image: "/home-imgs/maquila_meeting.png",
   },
@@ -20,6 +20,13 @@ const services = [
     step: "03",
     title: "Maquila de Vidrio",
     desc: "Canto plano, barrenos, avellanes, saques y cortes especiales con precision milimetrica.",
+    link: "/servicios",
+    image: "/home-imgs/maquila_vidrio.avif",
+  },
+  {
+    step: "04",
+    title: "Venta de Herrajes",
+    desc: "Amplia gama de herrajes y accesorios de alta calidad para la instalación profesional de cristal y cancelería.",
     link: "/servicios",
     image: "/home-imgs/herrajes_hardware.png",
   },
@@ -133,7 +140,7 @@ export function ServicesPreview() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6"
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 md:gap-6"
         >
           {services.map((service) => (
             <ServiceCard key={service.title} service={service} />
