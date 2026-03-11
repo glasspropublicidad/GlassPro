@@ -13,6 +13,7 @@ const SERVICE_LINKS = [
   { href: "/servicios", label: "Venta de Vidrio y Cristal" },
   { href: "/servicios", label: "Vidrio Templado" },
   { href: "/servicios", label: "Maquila de Vidrio" },
+  { href: "/servicios", label: "Venta de Herrajes" },
 ];
 
 const LEGAL_LINKS = [
