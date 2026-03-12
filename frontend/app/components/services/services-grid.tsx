@@ -66,11 +66,11 @@ const SERVICES = [
     id: "vidrio-templado",
     icon: CogIcon,
     number: "02",
-    title: "Vidrio Templado",
+    title: "Vidrio Templado Jumbo",
     subtitle: "Resistencia y seguridad para tu proyecto",
     image: "/services-imgs/suministro-maquila.png",
     description:
-      "Procesamos vidrio templado con la precisión que tu proyecto exige. Nuestro horno de última generación garantiza resistencia, seguridad y un acabado impecable en cada pieza.",
+      "Procesamos vidrio templado jumbo con la precisión que tu proyecto exige. Nuestro horno de última generación garantiza resistencia, seguridad y un acabado impecable en cada pieza.",
     features: [
       "Proceso de templado con tecnología de última generación",
       "Variedad de espesores y dimensiones según requerimiento",

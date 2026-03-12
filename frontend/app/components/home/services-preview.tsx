@@ -11,8 +11,8 @@ const services = [
   },
   {
     step: "02",
-    title: "Vidrio Templado",
-    desc: "Procesamos vidrio templado con horno de 6.00 x 2.80 m. Tecnología de última generación para máxima resistencia y seguridad.",
+    title: "Vidrio Templado Jumbo",
+    desc: "Procesamos vidrio templado jumbo con horno de 6.00 x 2.80 m. Tecnología de última generación para máxima resistencia y seguridad.",
     link: "/servicios",
     image: "/home-imgs/maquila_meeting.png",
   },

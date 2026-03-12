@@ -40,7 +40,7 @@ const CONTACT_DETAILS = [
     {
         icon: MapPinIcon,
         label: "Ubicación",
-        value: "León, Guanajuato, México",
+        value: "Cipress 805 N, Col. El Duraznal, CP 37320, León, Gto.",
         href: undefined,
     },
     {
