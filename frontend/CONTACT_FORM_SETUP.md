@@ -1,56 +1,71 @@
-# 📧 Configuración del Formulario de Contacto (Resend + Vercel)
+# Configuracion del Formulario de Contacto (Resend + Vercel)
 
-Sigue estos pasos para activar el envío de correos electrónicos en producción. El formulario ya está construido con las mejores prácticas de seguridad (sanitización, honeypot, rate limiting).
+Este proyecto usa el mismo flujo documentado en `RESEND_INTEGRATION_GUIDE.md`.
 
-## 1. Instalar Dependencia
-Ejecuta el siguiente comando en la carpeta `frontend`:
+## Como funciona
 
-```bash
-npm install resend
+- El envio ocurre solo en servidor dentro de `app/routes/contacto.tsx`.
+- No se usa el SDK oficial de Resend.
+- Se hace un `fetch` directo a `https://api.resend.com/emails`.
+- La API key nunca se expone al navegador.
+
+## Configuracion en Resend
+
+1. Crea una cuenta en Resend.
+2. Genera una API key privada.
+3. Verifica el dominio desde el que vas a enviar correos, por ejemplo `glasspro.mx`.
+
+## Variables de entorno
+
+Configura estas variables en Vercel o en tu archivo `.env` local dentro de `frontend`:
+
+| Variable | Valor de ejemplo | Descripcion |
+| :--- | :--- | :--- |
+| `RESEND_API_KEY` | `re_123456789...` | API key privada de Resend |
+| `CONTACT_FORM_TO_EMAIL` | `tu-correo@glasspro.mx` | Correo interno que recibe los leads |
+| `CONTACT_FORM_FROM_EMAIL` | `GlassPro Contacto <noreply@glass-pro.mx>` | Remitente visible del correo |
+
+Si `CONTACT_FORM_FROM_EMAIL` no existe, el codigo usa este fallback:
+
+```text
+GlassPro Contacto <noreply@glasspro.mx>
 ```
 
-## 2. Configuración en Resend
-1. Crea una cuenta en [Resend.com](https://resend.com).
-2. Ve a **API Keys** y crea una nueva llave (llámala "GlassPro Production").
-3. **Importante:** Para enviar correos desde tu propio dominio (ej. `noreply@glasspro.mx`), ve a **Domains** y sigue los pasos para verificar tu dominio mediante registros DNS (DKIM/SPF).
+## Implementacion activa
 
-## 3. Variables de Entorno en Vercel
-Para que el servidor pueda enviar correos sin exponer llaves en el navegador, debes configurar estas variables:
+La ruta `app/routes/contacto.tsx` ya:
 
-1. Ve a tu proyecto en el **Vercel Dashboard**.
-2. Entra a **Settings** -> **Environment Variables**.
-3. Agrega las siguientes tres variables:
+- valida campos en backend,
+- aplica honeypot y rate limiting,
+- envia `from`, `to`, `reply_to`, `subject`, `text` y `html` a Resend,
+- usa el correo del usuario en `reply_to`,
+- y escapa el contenido del usuario antes de interpolarlo en HTML.
 
-| Variable | Valor de ejemplo | Descripción |
-| :--- | :--- | :--- |
-| `RESEND_API_KEY` | `re_123456789...` | Tu API Key de Resend |
-| `CONTACT_EMAIL` | `tu-correo@glasspro.mx` | El correo que recibirá los mensajes |
-| `RESEND_FROM_DOMAIN` | `noreply@glasspro.mx` | El remitente verificado en Resend |
+## Campos del formulario
 
-*Nota: Para desarrollo local, puedes crear un archivo `.env` en la raíz de `frontend` con estos mismos valores.*
+La UI actual envia estos campos reales de GlassPro:
 
-## 4. Activar el Código
-Abre el archivo `app/routes/contacto.tsx` y busca el bloque marcado como `RESEND INTEGRATION`. 
+- `name`
+- `email`
+- `phone`
+- `company`
+- `service`
+- `message`
+- `website` como honeypot anti-spam
 
-1. Descomenta el import al inicio del archivo (si decidiste moverlo arriba) o dentro de la función `action`.
-2. Descomenta todo el bloque de lógica de Resend (líneas ~150 a ~200).
-3. Asegúrate de que las variables coincidan con las que pusiste en Vercel.
+## Despliegue
 
-## 5. Desplegar
-Una vez realizados los cambios y configuradas las variables en Vercel:
+Una vez configuradas las variables de entorno:
 
 ```bash
 git add .
-git commit -m "feat: activate resend email integration"
+git commit -m "feat: activate contact resend integration"
 git push
 ```
 
-Vercel detectará el cambio y aplicará las variables de entorno automáticamente.
+## Seguridad
 
----
-
-### 🛡️ Notas de Seguridad Implementadas
-*   **Honeypot:** Detecta bots automáticamente sin molestar al usuario.
-*   **Rate Limiting:** Evita ataques de spam limitando a 5 envíos por minuto por IP.
-*   **Sanitización:** Todo input se limpia en el servidor antes de procesarse.
-*   **Zero Client Exposure:** Tu API Key nunca viaja al navegador; el envío ocurre 100% en el servidor de Vercel.
+- Honeypot para bots simples.
+- Rate limiting de 5 envios por minuto por IP.
+- Sanitizacion y validacion server-side.
+- API key privada y envio 100% del lado servidor.

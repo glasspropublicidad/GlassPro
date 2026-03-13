@@ -5,12 +5,11 @@ import { ContactForm } from "~/components/contact/contact-form";
 import { ContactInfo } from "~/components/contact/contact-info";
 import { buildSeoMeta } from "~/lib/seo";
 
-// ── SEO Meta ────────────────────────────────────────────────────
-export function meta({ }: Route.MetaArgs) {
+export function meta({}: Route.MetaArgs) {
     return buildSeoMeta({
         title: "Contacto y cotizaciones",
         description:
-            "Solicita una cotización con GlassPro para proyectos de cristal templado, vidrio y herrajes. Respuesta comercial en menos de 24 horas.",
+            "Solicita una cotizacion con GlassPro para proyectos de cristal templado, vidrio y herrajes. Respuesta comercial en menos de 24 horas.",
         path: "/contacto",
         keywords: [
             "contacto glasspro",
@@ -21,20 +20,24 @@ export function meta({ }: Route.MetaArgs) {
     });
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// SERVER-ONLY ACTION — runs exclusively on the server.
-// API keys and sensitive logic never reach the browser bundle.
-// ═══════════════════════════════════════════════════════════════════
-
-// ── Server-side sanitization (mirrors client but MANDATORY here) ─
 function sanitizeServer(input: unknown): string {
     if (typeof input !== "string") return "";
+
     return input
         .replace(/[<>]/g, "")
         .replace(/&/g, "&amp;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#x27;")
         .trim();
+}
+
+function escapeHtml(input: string): string {
+    return input
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 }
 
 function isValidEmail(email: string): boolean {
@@ -48,7 +51,88 @@ function isValidPhone(phone: string): boolean {
     return /^[+]?[\d\s\-().]{7,20}$/.test(phone);
 }
 
-// Max lengths (server-enforced)
+type ContactEmailPayload = {
+    name: string;
+    email: string;
+    phone: string;
+    company: string;
+    service: string;
+    message: string;
+};
+
+function buildTextEmail(values: ContactEmailPayload): string {
+    return [
+        "Nueva solicitud desde el formulario de contacto de GlassPro",
+        "",
+        `Nombre: ${values.name}`,
+        `Correo: ${values.email}`,
+        `Telefono: ${values.phone || "No proporcionado"}`,
+        `Empresa: ${values.company || "No proporcionada"}`,
+        `Servicio: ${values.service || "No especificado"}`,
+        "",
+        "Mensaje:",
+        values.message,
+    ].join("\n");
+}
+
+function buildHtmlEmail(values: ContactEmailPayload): string {
+    const safe = {
+        name: escapeHtml(values.name),
+        email: escapeHtml(values.email),
+        phone: escapeHtml(values.phone || "No proporcionado"),
+        company: escapeHtml(values.company || "No proporcionada"),
+        service: escapeHtml(values.service || "No especificado"),
+        message: escapeHtml(values.message).replace(/\n/g, "<br />"),
+    };
+
+    return `
+      <div style="margin:0;padding:32px;background:#f4f8ff;font-family:Arial,sans-serif;color:#1f2937;">
+        <div style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #dbeafe;border-radius:24px;overflow:hidden;">
+          <div style="padding:24px 28px;background:linear-gradient(135deg,#0255D1 0%,#47b6ff 100%);color:#ffffff;">
+            <p style="margin:0 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.85;">GlassPro</p>
+            <h1 style="margin:0;font-size:28px;line-height:1.2;">Nueva solicitud de contacto</h1>
+          </div>
+          <div style="padding:28px;">
+            <p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#4b5563;">
+              Se recibio una nueva solicitud desde el sitio web de GlassPro. A continuacion se muestran los datos del prospecto.
+            </p>
+            <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+              <tr>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;font-weight:700;color:#111827;">Nombre</td>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;color:#374151;">${safe.name}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;font-weight:700;color:#111827;">Correo</td>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;color:#374151;">${safe.email}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;font-weight:700;color:#111827;">Telefono</td>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;color:#374151;">${safe.phone}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;font-weight:700;color:#111827;">Empresa</td>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;color:#374151;">${safe.company}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;font-weight:700;color:#111827;">Servicio</td>
+                <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;color:#374151;">${safe.service}</td>
+              </tr>
+            </table>
+            <div style="padding:20px;border-radius:18px;background:#eff6ff;border:1px solid #bfdbfe;">
+              <p style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0255D1;">Mensaje</p>
+              <p style="margin:0;font-size:15px;line-height:1.7;color:#1f2937;">${safe.message}</p>
+            </div>
+            <div style="margin-top:24px;">
+              <a href="mailto:${safe.email}" style="display:inline-block;padding:14px 22px;background:#0255D1;color:#ffffff;text-decoration:none;border-radius:999px;font-weight:700;">
+                Responder a ${safe.name}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+}
+
 const MAX = {
     name: 100,
     email: 254,
@@ -58,10 +142,9 @@ const MAX = {
     message: 2000,
 } as const;
 
-// Simple in-memory rate limiter (per IP, per deployment instance)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
-const RATE_LIMIT_MAX = 5; // max 5 submissions per minute per IP
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 5;
 
 function isRateLimited(ip: string): boolean {
     const now = Date.now();
@@ -77,7 +160,6 @@ function isRateLimited(ip: string): boolean {
 }
 
 export async function action({ request }: Route.ActionArgs) {
-    // ── Rate limiting ───────────────────────────────────────────
     const forwarded = request.headers.get("x-forwarded-for");
     const ip = forwarded?.split(",")[0]?.trim() || "unknown";
 
@@ -93,17 +175,13 @@ export async function action({ request }: Route.ActionArgs) {
         );
     }
 
-    // ── Parse form data ─────────────────────────────────────────
     const formData = await request.formData();
 
-    // ── Honeypot check — if filled, it's a bot ──────────────────
     const honeypot = formData.get("website");
     if (honeypot && typeof honeypot === "string" && honeypot.length > 0) {
-        // Silently accept — don't reveal to bot that we rejected it
         return data({ success: true }, { status: 200 });
     }
 
-    // ── Sanitize all inputs ─────────────────────────────────────
     const name = sanitizeServer(formData.get("name"));
     const email = sanitizeServer(formData.get("email"));
     const phone = sanitizeServer(formData.get("phone"));
@@ -111,26 +189,25 @@ export async function action({ request }: Route.ActionArgs) {
     const service = sanitizeServer(formData.get("service"));
     const message = sanitizeServer(formData.get("message"));
 
-    // ── Server-side validation ──────────────────────────────────
     const fieldErrors: Record<string, string> = {};
 
     if (!name || name.length > MAX.name) {
-        fieldErrors.name = "El nombre es obligatorio (máx. 100 caracteres).";
+        fieldErrors.name = "El nombre es obligatorio (max. 100 caracteres).";
     }
     if (!email || !isValidEmail(email) || email.length > MAX.email) {
-        fieldErrors.email = "Introduce un correo electrónico válido.";
+        fieldErrors.email = "Introduce un correo electronico valido.";
     }
     if (phone && (!isValidPhone(phone) || phone.length > MAX.phone)) {
-        fieldErrors.phone = "Teléfono inválido.";
+        fieldErrors.phone = "Telefono invalido.";
     }
     if (company.length > MAX.company) {
         fieldErrors.company = "Nombre de empresa demasiado largo.";
     }
     if (service.length > MAX.service) {
-        fieldErrors.service = "Servicio inválido.";
+        fieldErrors.service = "Servicio invalido.";
     }
     if (!message || message.length > MAX.message) {
-        fieldErrors.message = `El mensaje es obligatorio (máx. ${MAX.message} caracteres).`;
+        fieldErrors.message = `El mensaje es obligatorio (max. ${MAX.message} caracteres).`;
     }
 
     if (Object.keys(fieldErrors).length > 0) {
@@ -140,104 +217,97 @@ export async function action({ request }: Route.ActionArgs) {
         );
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // RESEND INTEGRATION — uncomment when ready to send emails.
-    //
-    // 1. Install:  npm install resend
-    //
-    // 2. Set env vars in Vercel Dashboard:
-    //    → Settings → Environment Variables
-    //    ┌─────────────────────┬──────────────────────────────────┐
-    //    │ RESEND_API_KEY      │ re_xxxxxxxxxxxxxxxxxxxxxxxxxx    │
-    //    │ CONTACT_EMAIL       │ contacto@glasspro.mx             │
-    //    │ RESEND_FROM_DOMAIN  │ noreply@glasspro.mx              │
-    //    └─────────────────────┴──────────────────────────────────┘
-    //    For local dev, add the same vars to .env (already gitignored).
-    //
-    // 3. Uncomment the block below:
-    //
-    // import { Resend } from "resend";
-    //
-    // const resendApiKey = process.env.RESEND_API_KEY;
-    // const contactEmail = process.env.CONTACT_EMAIL || "contacto@glasspro.mx";
-    // const fromDomain = process.env.RESEND_FROM_DOMAIN || "noreply@glasspro.mx";
-    //
-    // if (!resendApiKey) {
-    //   console.error("❌ RESEND_API_KEY is not set");
-    //   return data(
-    //     {
-    //       success: false,
-    //       error: "Error de configuración del servidor. Contacta al administrador.",
-    //       fieldErrors: {},
-    //     },
-    //     { status: 500 }
-    //   );
-    // }
-    //
-    // const resend = new Resend(resendApiKey);
-    //
-    // try {
-    //   await resend.emails.send({
-    //     from: `GlassPro <${fromDomain}>`,
-    //     to: [contactEmail],
-    //     subject: `Nueva cotización: ${name} — ${service || "General"}`,
-    //     html: `
-    //       <h2>Nueva solicitud de contacto</h2>
-    //       <p><strong>Nombre:</strong> ${name}</p>
-    //       <p><strong>Correo:</strong> ${email}</p>
-    //       <p><strong>Teléfono:</strong> ${phone || "No proporcionado"}</p>
-    //       <p><strong>Empresa:</strong> ${company || "No proporcionada"}</p>
-    //       <p><strong>Servicio:</strong> ${service || "No especificado"}</p>
-    //       <hr />
-    //       <p>${message.replace(/\n/g, "<br />")}</p>
-    //     `,
-    //     replyTo: email,
-    //   });
-    // } catch (err) {
-    //   console.error("Resend error:", err);
-    //   return data(
-    //     {
-    //       success: false,
-    //       error: "Hubo un problema al enviar tu mensaje. Intenta de nuevo.",
-    //       fieldErrors: {},
-    //     },
-    //     { status: 500 }
-    //   );
-    // }
-    // ═══════════════════════════════════════════════════════════════
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const to = process.env.CONTACT_FORM_TO_EMAIL;
+    const from =
+        process.env.CONTACT_FORM_FROM_EMAIL ??
+        "GlassPro Contacto <noreply@glass-pro.mx>";
 
-    // For now, log to server console (remove when Resend is active)
-    console.log("📬 New contact submission:", {
-        name,
-        email,
-        phone,
-        company,
-        service,
-        message: message.substring(0, 100) + "...",
-    });
+    if (!resendApiKey || !to) {
+        console.error("Missing Resend configuration", {
+            hasApiKey: Boolean(resendApiKey),
+            hasTo: Boolean(to),
+        });
+
+        return data(
+            {
+                success: false,
+                error:
+                    "El formulario no esta configurado correctamente en este momento. Intenta mas tarde.",
+                fieldErrors: {},
+            },
+            { status: 500 }
+        );
+    }
+
+    const values = { name, email, phone, company, service, message };
+
+    let resendResponse: Response;
+
+    try {
+        resendResponse = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${resendApiKey}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                from,
+                to: [to],
+                reply_to: email,
+                subject: `Nueva solicitud GlassPro: ${service || "Contacto general"}`,
+                text: buildTextEmail(values),
+                html: buildHtmlEmail(values),
+            }),
+        });
+    } catch (error) {
+        console.error("Resend request failed", error);
+
+        return data(
+            {
+                success: false,
+                error: "Hubo un problema al enviar tu mensaje. Intenta de nuevo.",
+                fieldErrors: {},
+            },
+            { status: 502 }
+        );
+    }
+
+    if (!resendResponse.ok) {
+        const errorText = await resendResponse.text();
+        console.error("Resend send failed", {
+            status: resendResponse.status,
+            body: errorText,
+        });
+
+        return data(
+            {
+                success: false,
+                error: "No fue posible enviar tu mensaje. Intenta nuevamente.",
+                fieldErrors: {},
+            },
+            { status: 502 }
+        );
+    }
 
     return data({ success: true, fieldErrors: {} }, { status: 200 });
 }
 
-// ── Page Component ──────────────────────────────────────────────
 export default function Contacto() {
     return (
         <div className="flex flex-col bg-gradient-to-b from-[#FAFCFF] via-white to-[#FAFCFF] overflow-x-clip min-h-screen">
             <ContactHero />
 
             <section className="w-full py-16 md:py-24 px-6 relative z-10">
-                {/* Background decorations */}
                 <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-gradient-to-br from-[#47b6ff]/8 to-transparent rounded-full blur-[80px] pointer-events-none" />
                 <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[500px] h-[500px] bg-gradient-to-tr from-[#0255D1]/8 to-transparent rounded-full blur-[80px] pointer-events-none" />
 
                 <div className="mx-auto max-w-6xl relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                        {/* Left: Contact Info */}
                         <div className="lg:col-span-5 lg:sticky lg:top-32">
                             <ContactInfo />
                         </div>
 
-                        {/* Right: Form */}
                         <div className="lg:col-span-7">
                             <ContactForm />
                         </div>
