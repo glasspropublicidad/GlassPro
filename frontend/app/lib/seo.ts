@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://glasspro.mx";
+const DEFAULT_SITE_URL = "https://glass-pro.mx";
 
 export const OG_IMAGE_PATHS = {
   default: "/og/og-architecture.png",
