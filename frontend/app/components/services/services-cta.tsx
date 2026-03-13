@@ -38,12 +38,9 @@ export function ServicesCta() {
               solución ideal en cristal templado y herrajes.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button href="/contacto" variant="light" size="lg" className="shadow-xl">
                 Solicitar Cotización
-              </Button>
-              <Button href="/portafolio" variant="glass" size="lg">
-                Ver Portafolio
               </Button>
             </div>
           </div>

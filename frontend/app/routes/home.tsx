@@ -4,9 +4,8 @@ import { TrustBar } from "~/components/home/trust-bar";
 import { Intro } from "~/components/home/intro";
 import { ServicesPreview } from "~/components/home/services-preview";
 import { ValueProps } from "~/components/home/value-props";
-import { PortfolioPreview } from "~/components/home/portfolio-preview";
-import { Testimonials } from "~/components/home/testimonials";
 import { FAQ, COMMON_FAQ_ITEMS } from "~/components/shared/faq";
+import { Testimonials } from "~/components/shared/testimonials";
 import { ContactCTA } from "~/components/home/contact-cta";
 
 export function meta({ }: Route.MetaArgs) {
@@ -24,7 +23,6 @@ export default function Home() {
       <TrustBar />
       <ServicesPreview />
       <ValueProps />
-      <PortfolioPreview />
       <Testimonials />
       <FAQ items={COMMON_FAQ_ITEMS} className="w-full py-32 px-6 relative z-10" />
       <ContactCTA />

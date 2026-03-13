@@ -254,7 +254,6 @@ const NAV_LINKS = [
     { href: '/', label: 'Inicio' },
     { href: '/quienes-somos', label: 'Nosotros' },
     { href: '/servicios', label: 'Servicios' },
-    { href: '/portafolio', label: 'Portafolio' },
     { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
 ];

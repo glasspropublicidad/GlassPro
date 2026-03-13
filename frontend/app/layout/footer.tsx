@@ -2,9 +2,8 @@ import { Link } from "react-router";
 
 const QUICK_LINKS = [
   { href: "/", label: "Inicio" },
-  { href: "/quienes-somos", label: "Quienes Somos" },
+  { href: "/quienes-somos", label: "Quiénes Somos" },
   { href: "/servicios", label: "Servicios" },
-  { href: "/portafolio", label: "Portafolio" },
   { href: "/blog", label: "Blog" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -18,7 +17,7 @@ const SERVICE_LINKS = [
 
 const LEGAL_LINKS = [
   { href: "/aviso-de-privacidad", label: "Aviso de Privacidad" },
-  { href: "/terminos-y-condiciones", label: "Terminos y Condiciones" },
+  { href: "/terminos-y-condiciones", label: "Términos y Condiciones" },
 ];
 
 export function Footer() {
@@ -41,7 +40,7 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/80">
               Innovation Glass Solutions | Visionary Glass Solutions.
-              Fabricacion y servicio especializado para proyectos residenciales y comerciales.
+              Fabricación y servicio especializado para proyectos residenciales y comerciales.
             </p>
           </div>
 
@@ -98,7 +97,7 @@ export function Footer() {
               to="/contacto"
               className="mt-6 inline-flex rounded-full border border-white/25 bg-white/10 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#0C4C78]"
             >
-              Solicitar Cotizacion
+              Solicitar Cotización
             </Link>
           </div>
         </div>
@@ -106,11 +105,10 @@ export function Footer() {
         <div className="border-t border-white/15">
           <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
             <p>GlassPro (c) {year}. Todos los derechos reservados.</p>
-            <p>Diseno y fabricacion de soluciones en vidrio.</p>
+            <p>Diseño y fabricación de soluciones en vidrio.</p>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-

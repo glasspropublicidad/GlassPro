@@ -68,7 +68,7 @@ export function Hero() {
                 className="max-w-2xl text-base leading-relaxed text-[#373435]/90 md:text-xl"
               >
                 Diseñamos, fabricamos y suministramos soluciones de cristal templado con
-                estandares industriales, soporte tecnico y ejecucion confiable para
+                estándares industriales, soporte técnico y ejecución confiable para
                 proyectos comerciales y residenciales.
               </motion.p>
             </div>

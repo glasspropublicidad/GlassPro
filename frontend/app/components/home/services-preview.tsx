@@ -5,7 +5,7 @@ const services = [
   {
     step: "01",
     title: "Venta de Vidrio",
-    desc: "Vidrio por hoja en multiples espesores y cristales especializados: Filtrasol, Satinado, Reflecta y mas.",
+    desc: "Vidrio por hoja en múltiples espesores y cristales especializados: Filtrasol, Satinado, Reflecta y más.",
     link: "/servicios",
     image: "/home-imgs/jumbo_tempered.png",
   },
@@ -19,7 +19,7 @@ const services = [
   {
     step: "03",
     title: "Maquila de Vidrio",
-    desc: "Canto plano, barrenos, avellanes, saques y cortes especiales con precision milimetrica.",
+    desc: "Canto plano, barrenos, avellanes, saques y cortes especiales con precisión milimétrica.",
     link: "/servicios",
     image: "/home-imgs/maquila_vidrio.avif",
   },

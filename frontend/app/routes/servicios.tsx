@@ -4,8 +4,8 @@ import { ServicesGrid } from "~/components/services/services-grid";
 import Process from "~/components/services/process";
 import { QualityAndSafety } from "~/components/services/quality-and-safety";
 import { Industries } from "~/components/services/industries";
-import { Testimonials } from "~/components/services/testimonials";
 import { FAQ, COMMON_FAQ_ITEMS } from "~/components/shared/faq";
+import { Testimonials } from "~/components/shared/testimonials";
 import { ServicesCta } from "~/components/services/services-cta";
 
 export function meta({ }: Route.MetaArgs) {

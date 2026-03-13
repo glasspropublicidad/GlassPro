@@ -23,7 +23,7 @@ const projects = [
   {
     title: "Fachada Corporativa Norte",
     category: "Corporativo",
-    summary: "Cristal templado jumbo para fachada principal con integracion limpia de herrajes.",
+    summary: "Cristal templado jumbo para fachada principal con integración limpia de herrajes.",
     href: "/portafolio",
     image:
       "/home-imgs/portfolio-1.avif",
@@ -33,7 +33,7 @@ const projects = [
   {
     title: "Sistema de Oficinas Ejecutivas",
     category: "Residencial",
-    summary: "Division de espacios con cristal de alta claridad para oficinas y salas colaborativas.",
+    summary: "División de espacios con cristal de alta claridad para oficinas y salas colaborativas.",
     href: "/portafolio",
     image:
       "/home-imgs/portfolio-2.avif",
@@ -43,7 +43,7 @@ const projects = [
   {
     title: "Plaza Comercial Delta",
     category: "Comercial",
-    summary: "Maquila y montaje de canceleria para pasillos de alto trafico y locales ancla.",
+    summary: "Maquila y montaje de cancelería para pasillos de alto tráfico y locales ancla.",
     href: "/portafolio",
     image:
       "/home-imgs/portfolio-3.avif",
@@ -53,7 +53,7 @@ const projects = [
   {
     title: "Hotel Mirador Azul",
     category: "Hospitalidad",
-    summary: "Canceleria para lobby y suites con acabados premium y especificacion arquitectonica.",
+    summary: "Cancelería para lobby y suites con acabados premium y especificación arquitectónica.",
     href: "/portafolio",
     image:
       "/home-imgs/portfolio-4.avif",
@@ -81,7 +81,7 @@ export function PortfolioPreview() {
               Proyectos Destacados
             </h2>
             <p className="mt-4 text-lg text-[#373435]/65 md:text-xl">
-              Casos de exito que reflejan precision tecnica, diseno y ejecucion impecable.
+              Casos de éxito que reflejan precisión técnica, diseño y ejecución impecable.
             </p>
           </div>
 

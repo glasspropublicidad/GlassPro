@@ -12,7 +12,7 @@ const testimonials: Testimonial[] = [
   {
     text: "GlassPro nos ayudó a ejecutar un proyecto de cristal templado jumbo con precisión total. La calidad del acabado elevó por completo el resultado arquitectónico.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Ricardo Mendoza",
+    name: "Andrea Mendoza",
     role: "Arquitecto",
   },
   {
@@ -77,9 +77,7 @@ function TestimonialsColumn(props: {
   return (
     <div className={props.className}>
       <motion.ul
-        animate={{
-          translateY: "-50%",
-        }}
+        animate={{ translateY: "-50%" }}
         transition={{
           duration: props.duration || 10,
           repeat: Infinity,
@@ -118,7 +116,7 @@ function TestimonialsColumn(props: {
                       width={40}
                       height={40}
                       src={image}
-                      alt={`Avatar of ${name}`}
+                      alt={`Avatar de ${name}`}
                       className="h-10 w-10 rounded-full object-cover ring-2 ring-[#0255D1]/10 transition-all duration-300 ease-in-out group-hover:ring-[#0255D1]/30"
                     />
                     <div className="flex flex-col">
@@ -159,18 +157,21 @@ export function Testimonials() {
       >
         <div className="mx-auto mb-16 flex max-w-[540px] flex-col items-center justify-center">
           <div className="flex justify-center">
-            <div className="rounded-full border border-[#0255D1]/15 bg-[#0255D1]/[0.06] px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#0255D1]">
+            <div className="rounded-full border border-[#0255D1]/15 bg-[#0255D1]/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#0255D1] shadow-sm">
               Testimonios
             </div>
           </div>
 
           <h2
             id="testimonials-heading"
-            className="mt-6 text-center text-4xl font-extrabold tracking-tight text-[#373435] md:text-5xl"
+            className="mt-6 text-center text-4xl font-black tracking-[-0.04em] text-[#373435] md:text-5xl leading-[1.1]"
           >
-            Lo que nuestros clientes dicen
+            Lo que nuestros{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0255D1] to-[#47b6ff]">
+              clientes dicen
+            </span>
           </h2>
-          <p className="mt-5 max-w-sm text-center text-lg leading-relaxed text-[#373435]/55">
+          <p className="mt-5 max-w-sm text-center text-lg leading-relaxed text-[#373435]/55 font-medium">
             Profesionales de la construcción y el diseño confían en nuestra
             calidad, precisión y acompañamiento.
           </p>

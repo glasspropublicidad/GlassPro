@@ -128,7 +128,7 @@ const ENTRIES: Entry[] = [
             "Ajuste fino de bisagras, cerraduras y accesorios",
             "Limpieza y revisión final junto al cliente"
         ],
-        button: { href: "/portfolio", text: "Ver proyectos" },
+        button: { href: "/contacto", text: "Hablar con un asesor" },
     },
 ];
 
