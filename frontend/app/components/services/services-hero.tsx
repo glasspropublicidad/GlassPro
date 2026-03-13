@@ -27,7 +27,7 @@ export function ServicesHero() {
     <section className="relative w-full min-h-screen px-6 flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 -z-20">
         <img
-          src="/services-imgs/services-hero.png"
+          src="/services-imgs/services-hero.avif"
           alt="Cristal templado GlassPro"
           className="h-full w-full object-cover object-center"
         />

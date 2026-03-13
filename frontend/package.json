@@ -5,6 +5,8 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
+    "images:avif": "npm exec --yes --package=sharp -- node ./scripts/convert-missing-avif.mjs",
+    "images:og": "npm exec --yes --package=sharp -- node ./scripts/generate-og-image.mjs",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },

@@ -6,7 +6,7 @@ export function ContactHero() {
       {/* Background Image */}
       <div className="absolute inset-0 -z-30">
         <img
-          src="/contact-imgs/contact-hero.png"
+          src="/contact-imgs/contact-hero.avif"
           alt="Fondo Contacto"
           className="w-full h-full object-cover object-center"
         />

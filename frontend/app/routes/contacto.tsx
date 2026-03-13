@@ -3,17 +3,22 @@ import { data } from "react-router";
 import { ContactHero } from "~/components/contact/contact-hero";
 import { ContactForm } from "~/components/contact/contact-form";
 import { ContactInfo } from "~/components/contact/contact-info";
+import { buildSeoMeta } from "~/lib/seo";
 
 // ── SEO Meta ────────────────────────────────────────────────────
 export function meta({ }: Route.MetaArgs) {
-    return [
-        { title: "Contacto | GlassPro" },
-        {
-            name: "description",
-            content:
-                "Contacta a GlassPro para cotizar tu proyecto de cristal templado. Respuesta en menos de 24 horas.",
-        },
-    ];
+    return buildSeoMeta({
+        title: "Contacto y cotizaciones",
+        description:
+            "Solicita una cotización con GlassPro para proyectos de cristal templado, vidrio y herrajes. Respuesta comercial en menos de 24 horas.",
+        path: "/contacto",
+        keywords: [
+            "contacto glasspro",
+            "cotizacion cristal templado",
+            "cotizacion vidrio",
+            "glasspro leon guanajuato",
+        ],
+    });
 }
 
 // ═══════════════════════════════════════════════════════════════════

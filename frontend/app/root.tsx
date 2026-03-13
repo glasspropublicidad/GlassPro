@@ -15,8 +15,14 @@ import { setLenisInstance } from "~/lib/lenis";
 import useScrollToTop from "~/hooks/useScrollToTop";
 import { Navbar } from "~/layout/navbar";
 import { Footer } from "~/layout/footer";
+import {
+  buildOrganizationSchema,
+  buildWebsiteSchema,
+  getSiteUrl,
+} from "~/lib/seo";
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.ico", sizes: "any" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -29,7 +35,18 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function meta() {
+  return [
+    { name: "theme-color", content: "#0255D1" },
+    { name: "application-name", content: "GlassPro" },
+    { name: "apple-mobile-web-app-title", content: "GlassPro" },
+  ];
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const organizationSchema = buildOrganizationSchema();
+  const websiteSchema = buildWebsiteSchema();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -59,8 +76,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="React Router" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta name="twitter:domain" content={new URL(getSiteUrl()).hostname} />
         <Meta />
         <Links />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
       </head>
       <body className="bg-white text-[#373435] font-sans antialiased selection:bg-[#0255D1]/20">
         <Navbar />

@@ -1,16 +1,21 @@
 import { motion } from "framer-motion";
 import { Link, useLoaderData } from "react-router";
 import { getPosts, urlFor, type Post } from "~/lib/sanity";
+import { buildSeoMeta } from "~/lib/seo";
 
 export function meta() {
-  return [
-    { title: "Blog | GlassPro" },
-    {
-      name: "description",
-      content:
-        "Noticias, tips y proyectos del mundo del cristal templado — Blog GlassPro.",
-    },
-  ];
+  return buildSeoMeta({
+    title: "Blog de vidrio y cristal templado",
+    description:
+      "Articulos, noticias, tendencias y consejos tecnicos sobre cristal templado, herrajes, instalacion y proyectos especiales de GlassPro.",
+    path: "/blog",
+    keywords: [
+      "blog vidrio templado",
+      "articulos de cristal templado",
+      "tips de vidrio",
+      "proyectos glasspro",
+    ],
+  });
 }
 
 export async function loader() {
@@ -128,7 +133,7 @@ function BlogCard({ post, index }: { post: Post; index: number }) {
           )}
 
           <div className="mt-auto flex items-center gap-2 pt-5 text-sm font-bold text-[#0255D1] transition-all duration-300 group-hover:gap-3">
-            Leer más
+            Leer mas
             <svg
               className="h-4 w-4"
               fill="none"
@@ -172,9 +177,9 @@ function EmptyState() {
           />
         </svg>
       </div>
-      <h3 className="text-xl font-bold text-[#0C4C78]">Próximamente</h3>
+      <h3 className="text-xl font-bold text-[#0C4C78]">Proximamente</h3>
       <p className="mt-2 text-[#373435]/50">
-        Estamos preparando contenido increíble. ¡Vuelve pronto!
+        Estamos preparando contenido increible. Vuelve pronto.
       </p>
     </motion.div>
   );
@@ -185,21 +190,18 @@ export default function Blog() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative flex min-h-[65vh] w-full items-end overflow-hidden bg-[#0C4C78] pt-32 pb-16 md:pb-20">
-        {/* Background Image */}
+      <section className="relative flex min-h-[65vh] w-full items-end overflow-hidden bg-[#0C4C78] pb-16 pt-32 md:pb-20">
         <div className="absolute inset-0">
           <img
             src="/hero-blog.avif"
             alt="Blog GlassPro"
             className="h-full w-full object-cover object-center"
           />
-          {/* Overlay to ensure text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0C4C78]/80 via-[#0a3d66]/50 to-[#082d4f]/70" />
         </div>
 
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 -right-32 h-[60vh] w-[60vh] rounded-full bg-[#0255D1]/30 blur-3xl mix-blend-screen" />
+          <div className="absolute -right-32 -top-32 h-[60vh] w-[60vh] rounded-full bg-[#0255D1]/30 blur-3xl mix-blend-screen" />
           <div className="absolute -bottom-20 -left-20 h-[40vh] w-[40vh] rounded-full bg-[#47b6ff]/20 blur-3xl mix-blend-screen" />
         </div>
 
@@ -222,7 +224,7 @@ export default function Blog() {
             >
               Noticias &{" "}
               <span className="bg-gradient-to-r from-[#8fd7ff] via-[#47b6ff] to-[#47b6ff] bg-clip-text text-transparent">
-                Artículos
+                Articulos
               </span>
             </motion.h1>
             <motion.p
@@ -230,7 +232,7 @@ export default function Blog() {
               className="mt-5 max-w-xl text-lg leading-relaxed text-white/60"
             >
               Todo sobre cristal templado: tendencias, proyectos destacados, tips
-              técnicos y novedades de la industria.
+              tecnicos y novedades de la industria.
             </motion.p>
           </motion.div>
         </div>
@@ -238,7 +240,6 @@ export default function Blog() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* Posts Grid */}
       <section className="relative w-full bg-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
           {posts.length === 0 ? (

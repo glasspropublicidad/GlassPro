@@ -3,16 +3,36 @@ import { Link, useLoaderData } from "react-router";
 import { PortableText } from "@portabletext/react";
 import { getPost, urlFor, type Post } from "~/lib/sanity";
 import type { Route } from "./+types/blog.$slug";
+import { buildBlogPostingSchema, buildSeoMeta } from "~/lib/seo";
 
 export function meta({ data }: Route.MetaArgs) {
   const post = data as Post | null;
   if (!post) {
-    return [{ title: "Post no encontrado | GlassPro" }];
+    return buildSeoMeta({
+      title: "Post no encontrado",
+      description: "El articulo solicitado no esta disponible.",
+      path: "/blog",
+      noindex: true,
+    });
   }
-  return [
-    { title: `${post.title} | Blog GlassPro` },
-    { name: "description", content: post.excerpt || "" },
-  ];
+
+  const path = `/blog/${post.slug.current}`;
+  const image = post.mainImage?.asset
+    ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
+    : "/og/glasspro-og.png";
+
+  return buildSeoMeta({
+    title: `${post.title} | Blog`,
+    description: post.excerpt || "Articulo del blog de GlassPro.",
+    path,
+    image,
+    type: "article",
+    publishedTime: post.publishedAt,
+    modifiedTime: post.publishedAt,
+    section: post.category,
+    authors: post.author ? [post.author] : [],
+    keywords: post.tags,
+  });
 }
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -74,17 +94,17 @@ const portableTextComponents = {
   },
   block: {
     h2: ({ children }: any) => (
-      <h2 className="mt-12 mb-4 text-2xl font-bold tracking-tight text-[#0C4C78] md:text-3xl">
+      <h2 className="mb-4 mt-12 text-2xl font-bold tracking-tight text-[#0C4C78] md:text-3xl">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="mt-10 mb-3 text-xl font-bold tracking-tight text-[#0C4C78] md:text-2xl">
+      <h3 className="mb-3 mt-10 text-xl font-bold tracking-tight text-[#0C4C78] md:text-2xl">
         {children}
       </h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="mt-8 mb-3 text-lg font-bold text-[#0C4C78]">{children}</h4>
+      <h4 className="mb-3 mt-8 text-lg font-bold text-[#0C4C78]">{children}</h4>
     ),
     normal: ({ children }: any) => (
       <p className="mb-5 text-base leading-[1.8] text-[#373435]/80 md:text-lg">
@@ -92,7 +112,7 @@ const portableTextComponents = {
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="my-8 border-l-4 border-[#0255D1] bg-[#edf4ff]/50 py-4 pl-6 pr-4 italic text-[#0C4C78] rounded-r-xl">
+      <blockquote className="my-8 rounded-r-xl border-l-4 border-[#0255D1] bg-[#edf4ff]/50 py-4 pl-6 pr-4 italic text-[#0C4C78]">
         {children}
       </blockquote>
     ),
@@ -128,11 +148,25 @@ const portableTextComponents = {
 
 export default function BlogPost() {
   const post = useLoaderData<typeof loader>();
+  const schema = buildBlogPostingSchema({
+    title: post.title,
+    description: post.excerpt || "Articulo del blog de GlassPro.",
+    path: `/blog/${post.slug.current}`,
+    image: post.mainImage?.asset
+      ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
+      : "/og/glasspro-og.png",
+    publishedTime: post.publishedAt,
+    author: post.author,
+  });
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative flex min-h-[60vh] w-full items-end overflow-hidden pt-28 pb-16 md:pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
+      <section className="relative flex min-h-[60vh] w-full items-end overflow-hidden pb-16 pt-28 md:pb-20">
         {post.mainImage?.asset ? (
           <div className="absolute inset-0 -z-20">
             <img
@@ -147,7 +181,7 @@ export default function BlogPost() {
         )}
 
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-32 -right-32 h-[50vh] w-[50vh] rounded-full bg-[#0255D1]/10 blur-3xl" />
+          <div className="absolute -right-32 -top-32 h-[50vh] w-[50vh] rounded-full bg-[#0255D1]/10 blur-3xl" />
         </div>
 
         <div className="container relative z-10 mx-auto max-w-4xl px-6">
@@ -239,7 +273,6 @@ export default function BlogPost() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* Body */}
       <section className="relative w-full bg-white py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-6">
           <motion.article
@@ -252,7 +285,6 @@ export default function BlogPost() {
             )}
           </motion.article>
 
-          {/* Tags */}
           {post.tags && post.tags.length > 0 && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -276,7 +308,6 @@ export default function BlogPost() {
             </motion.div>
           )}
 
-          {/* Back to blog */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}

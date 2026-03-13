@@ -7,12 +7,22 @@ import { ValueProps } from "~/components/home/value-props";
 import { FAQ, COMMON_FAQ_ITEMS } from "~/components/shared/faq";
 import { Testimonials } from "~/components/shared/testimonials";
 import { ContactCTA } from "~/components/home/contact-cta";
+import { buildSeoMeta } from "~/lib/seo";
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Inicio | GlassPro" },
-    { name: "description", content: "Diseñamos, fabricamos y suministramos soluciones de cristal templado con estándares industriales — GlassPro" },
-  ];
+export function meta({}: Route.MetaArgs) {
+  return buildSeoMeta({
+    title: "Cristal templado y soluciones en vidrio",
+    description:
+      "GlassPro diseña, fabrica y suministra cristal templado, maquila de vidrio y herrajes para proyectos residenciales, comerciales e industriales en México.",
+    path: "/",
+    keywords: [
+      "cristal templado",
+      "vidrio templado",
+      "maquila de vidrio",
+      "herrajes para cristal",
+      "glasspro",
+    ],
+  });
 }
 
 export default function Home() {

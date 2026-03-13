@@ -7,14 +7,14 @@ const services = [
     title: "Venta de Vidrio",
     desc: "Vidrio por hoja en múltiples espesores y cristales especializados: Filtrasol, Satinado, Reflecta y más.",
     link: "/servicios",
-    image: "/home-imgs/jumbo_tempered.png",
+    image: "/home-imgs/jumbo_tempered.avif",
   },
   {
     step: "02",
     title: "Vidrio Templado Jumbo",
     desc: "Procesamos vidrio templado jumbo con horno de 6.00 x 2.80 m. Tecnología de última generación para máxima resistencia y seguridad.",
     link: "/servicios",
-    image: "/home-imgs/maquila_meeting.png",
+    image: "/home-imgs/maquila_meeting.avif",
   },
   {
     step: "03",
@@ -28,7 +28,7 @@ const services = [
     title: "Venta de Herrajes",
     desc: "Amplia gama de herrajes y accesorios de alta calidad para la instalación profesional de cristal y cancelería.",
     link: "/servicios",
-    image: "/home-imgs/herrajes_hardware.png",
+    image: "/home-imgs/herrajes_hardware.avif",
   },
 ];
 

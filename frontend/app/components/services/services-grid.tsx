@@ -50,7 +50,7 @@ const SERVICES = [
     number: "01",
     title: "Venta de Vidrio y Cristal",
     subtitle: "Amplia variedad de vidrios por hoja y cristales especializados",
-    image: "/services-imgs/glass-templado-jumbo.png",
+    image: "/services-imgs/glass-templado-jumbo.avif",
     description:
       "Ofrecemos venta de vidrio por hoja en múltiples espesores y una amplia gama de cristales especializados para todo tipo de proyecto arquitectónico, residencial y comercial.",
     features: [
@@ -68,7 +68,7 @@ const SERVICES = [
     number: "02",
     title: "Vidrio Templado Jumbo",
     subtitle: "Resistencia y seguridad para tu proyecto",
-    image: "/services-imgs/suministro-maquila.png",
+    image: "/services-imgs/suministro-maquila.avif",
     description:
       "Procesamos vidrio templado jumbo con la precisión que tu proyecto exige. Nuestro horno de última generación garantiza resistencia, seguridad y un acabado impecable en cada pieza.",
     features: [
@@ -86,7 +86,7 @@ const SERVICES = [
     number: "03",
     title: "Maquila de Vidrio",
     subtitle: "Procesos especializados con precisión milimétrica",
-    image: "/services-imgs/herrajes-premium.png",
+    image: "/services-imgs/herrajes-premium.avif",
     description:
       "Realizamos todo tipo de procesos sobre vidrio con precisión milimétrica: canteado, perforaciones, saques y cortes especiales adaptados a las necesidades específicas de cada proyecto.",
     features: [

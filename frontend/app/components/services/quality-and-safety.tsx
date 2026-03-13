@@ -103,7 +103,7 @@ export function QualityAndSafety() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(12,76,120,0.15)]">
               <img
-                src="/services-imgs/quality-certified.png"
+                src="/services-imgs/quality-certified.avif"
                 alt="Control de calidad de cristal templado GlassPro"
                 className="w-full h-[380px] md:h-[440px] object-cover"
               />
