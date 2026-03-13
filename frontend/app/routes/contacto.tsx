@@ -3,7 +3,7 @@ import { data } from "react-router";
 import { ContactHero } from "~/components/contact/contact-hero";
 import { ContactForm } from "~/components/contact/contact-form";
 import { ContactInfo } from "~/components/contact/contact-info";
-import { buildSeoMeta } from "~/lib/seo";
+import { buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta({}: Route.MetaArgs) {
     return buildSeoMeta({
@@ -11,6 +11,7 @@ export function meta({}: Route.MetaArgs) {
         description:
             "Solicita una cotizacion con GlassPro para proyectos de cristal templado, vidrio y herrajes. Respuesta comercial en menos de 24 horas.",
         path: "/contacto",
+        image: OG_IMAGE_PATHS.contact,
         keywords: [
             "contacto glasspro",
             "cotizacion cristal templado",

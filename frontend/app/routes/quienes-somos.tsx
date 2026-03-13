@@ -5,7 +5,7 @@ import { Principles } from "~/components/about/principles";
 import { Capabilities } from "~/components/about/capabilities";
 import { FAQ, ABOUT_FAQ_ITEMS } from "~/components/shared/faq";
 import { AboutCTA } from "~/components/about/about-cta";
-import { buildSeoMeta } from "~/lib/seo";
+import { buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta({}: Route.MetaArgs) {
   return buildSeoMeta({
@@ -13,6 +13,7 @@ export function meta({}: Route.MetaArgs) {
     description:
       "Conoce a GlassPro, nuestra experiencia en soluciones de vidrio y el enfoque técnico con el que atendemos proyectos residenciales y comerciales.",
     path: "/quienes-somos",
+    image: OG_IMAGE_PATHS.about,
     keywords: [
       "glasspro",
       "empresa de vidrio",

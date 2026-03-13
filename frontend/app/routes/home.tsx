@@ -7,7 +7,7 @@ import { ValueProps } from "~/components/home/value-props";
 import { FAQ, COMMON_FAQ_ITEMS } from "~/components/shared/faq";
 import { Testimonials } from "~/components/shared/testimonials";
 import { ContactCTA } from "~/components/home/contact-cta";
-import { buildSeoMeta } from "~/lib/seo";
+import { buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta({}: Route.MetaArgs) {
   return buildSeoMeta({
@@ -15,6 +15,7 @@ export function meta({}: Route.MetaArgs) {
     description:
       "GlassPro diseña, fabrica y suministra cristal templado, maquila de vidrio y herrajes para proyectos residenciales, comerciales e industriales en México.",
     path: "/",
+    image: OG_IMAGE_PATHS.home,
     keywords: [
       "cristal templado",
       "vidrio templado",

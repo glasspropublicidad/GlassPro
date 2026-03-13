@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link, useLoaderData } from "react-router";
 import { getPosts, urlFor, type Post } from "~/lib/sanity";
-import { buildSeoMeta } from "~/lib/seo";
+import { buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta() {
   return buildSeoMeta({
@@ -9,6 +9,7 @@ export function meta() {
     description:
       "Articulos, noticias, tendencias y consejos tecnicos sobre cristal templado, herrajes, instalacion y proyectos especiales de GlassPro.",
     path: "/blog",
+    image: OG_IMAGE_PATHS.blog,
     keywords: [
       "blog vidrio templado",
       "articulos de cristal templado",

@@ -1,5 +1,15 @@
 const DEFAULT_SITE_URL = "https://glasspro.mx";
-const DEFAULT_OG_IMAGE_PATH = "/og/glasspro-og.png";
+
+export const OG_IMAGE_PATHS = {
+  default: "/og/og-architecture.png",
+  home: "/og/og-architecture.png",
+  services: "/og/og-sliding-doors.png",
+  about: "/og/og-office-interior.png",
+  contact: "/og/og-glass-shower.png",
+  blog: "/og/og-glass-balcony.png",
+} as const;
+
+const DEFAULT_OG_IMAGE_PATH = OG_IMAGE_PATHS.default;
 
 export const SITE_NAME = "GlassPro";
 export const SITE_LOCALE = "es_MX";
@@ -54,6 +64,11 @@ export function buildSeoMeta({
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = toAbsoluteUrl(path);
   const imageUrl = toAbsoluteUrl(image);
+  const imageType = imageUrl.endsWith(".png")
+    ? "image/png"
+    : imageUrl.endsWith(".jpg") || imageUrl.endsWith(".jpeg")
+      ? "image/jpeg"
+      : undefined;
   const robots = noindex
     ? "noindex, nofollow"
     : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
@@ -76,6 +91,7 @@ export function buildSeoMeta({
     { property: "og:url", content: canonicalUrl },
     { property: "og:image", content: imageUrl },
     { property: "og:image:secure_url", content: imageUrl },
+    ...(imageType ? [{ property: "og:image:type", content: imageType }] : []),
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:image:alt", content: `${SITE_NAME} - soluciones en vidrio` },
@@ -83,6 +99,7 @@ export function buildSeoMeta({
     { name: "twitter:title", content: fullTitle },
     { name: "twitter:description", content: description },
     { name: "twitter:image", content: imageUrl },
+    { name: "twitter:image:alt", content: `${SITE_NAME} - soluciones en vidrio` },
     ...(type === "article" && publishedTime
       ? [{ property: "article:published_time", content: publishedTime }]
       : []),

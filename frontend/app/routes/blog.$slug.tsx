@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router";
 import { PortableText } from "@portabletext/react";
 import { getPost, urlFor, type Post } from "~/lib/sanity";
 import type { Route } from "./+types/blog.$slug";
-import { buildBlogPostingSchema, buildSeoMeta } from "~/lib/seo";
+import { buildBlogPostingSchema, buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta({ data }: Route.MetaArgs) {
   const post = data as Post | null;
@@ -19,7 +19,7 @@ export function meta({ data }: Route.MetaArgs) {
   const path = `/blog/${post.slug.current}`;
   const image = post.mainImage?.asset
     ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
-    : "/og/glasspro-og.png";
+    : OG_IMAGE_PATHS.blog;
 
   return buildSeoMeta({
     title: `${post.title} | Blog`,
@@ -154,7 +154,7 @@ export default function BlogPost() {
     path: `/blog/${post.slug.current}`,
     image: post.mainImage?.asset
       ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
-      : "/og/glasspro-og.png",
+      : OG_IMAGE_PATHS.blog,
     publishedTime: post.publishedAt,
     author: post.author,
   });

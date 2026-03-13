@@ -1,7 +1,7 @@
 import type { Route } from "./+types/aviso-de-privacidad";
 import { LegalHero } from "~/components/legal/legal-hero";
 import { LegalContent } from "~/components/legal/legal-content";
-import { buildSeoMeta } from "~/lib/seo";
+import { buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta({}: Route.MetaArgs) {
   return buildSeoMeta({
@@ -9,6 +9,7 @@ export function meta({}: Route.MetaArgs) {
     description:
       "Consulta el aviso de privacidad de GlassPro para conocer cómo recopilamos, utilizamos y protegemos tus datos personales.",
     path: "/aviso-de-privacidad",
+    image: OG_IMAGE_PATHS.default,
   });
 }
 

@@ -7,7 +7,7 @@ import { Industries } from "~/components/services/industries";
 import { FAQ, COMMON_FAQ_ITEMS } from "~/components/shared/faq";
 import { Testimonials } from "~/components/shared/testimonials";
 import { ServicesCta } from "~/components/services/services-cta";
-import { buildSeoMeta } from "~/lib/seo";
+import { buildSeoMeta, OG_IMAGE_PATHS } from "~/lib/seo";
 
 export function meta({}: Route.MetaArgs) {
   return buildSeoMeta({
@@ -15,6 +15,7 @@ export function meta({}: Route.MetaArgs) {
     description:
       "Conoce los servicios de GlassPro: venta de vidrio y cristal, templado jumbo, maquila especializada y herrajes premium con calidad certificada.",
     path: "/servicios",
+    image: OG_IMAGE_PATHS.services,
     keywords: [
       "servicios de vidrio",
       "cristal templado jumbo",
