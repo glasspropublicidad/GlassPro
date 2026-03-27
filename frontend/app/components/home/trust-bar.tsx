@@ -32,7 +32,7 @@ const itemVariants = {
 export function TrustBar() {
   const trustItems = [
     { label: "Años de experiencia", value: "+15" },
-    { label: "Calidad Certificada", value: "ISO" },
+    { label: "Normas de seguridad", value: "NOM" },
     { label: "Acompañamiento", value: "100%" },
     { label: "Proyectos realizados", value: "+500" },
   ];

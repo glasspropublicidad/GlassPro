@@ -71,7 +71,7 @@ export function ServicesHero() {
           className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium"
         >
           Cristal templado, herrajes y acompañamiento integral para proyectos
-          que exigen calidad certificada, precisión y un balance perfecto entre
+          que exigen alto estándar de calidad, precisión y un balance perfecto entre
           rendimiento y valor.
         </motion.p>
 

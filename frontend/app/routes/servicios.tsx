@@ -13,7 +13,7 @@ export function meta({}: Route.MetaArgs) {
   return buildSeoMeta({
     title: "Servicios de vidrio y cristal templado",
     description:
-      "Conoce los servicios de GlassPro: venta de vidrio y cristal, templado jumbo, maquila especializada y herrajes premium con calidad certificada.",
+      "Conoce los servicios de GlassPro: venta de vidrio y cristal, templado jumbo, maquila especializada y herrajes premium con alto estándar de calidad.",
     path: "/servicios",
     image: OG_IMAGE_PATHS.services,
     keywords: [

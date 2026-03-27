@@ -28,7 +28,7 @@ export const ABOUT_FAQ_ITEMS: FAQItem[] = [
     },
     {
         q: "¿Cuentan con certificaciones de calidad?",
-        a: "Absolutamente, todos nuestros procesos están certificados bajo estrictas normas internacionales (ISO), garantizando la máxima seguridad y durabilidad en cada lámina de cristal.",
+        a: "Aplicamos controles de calidad estrictos en planta y nos alineamos a la normativa de seguridad aplicable. Priorizamos la seguridad y la durabilidad en cada lámina de cristal.",
     },
     {
         q: "¿Atienden proyectos residenciales y corporativos?",

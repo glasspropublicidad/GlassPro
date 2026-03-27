@@ -23,7 +23,7 @@ const caps = [
   "Esmerilado de Alta Precisión",
   "Canteado Rectilíneo",
   "Perforaciones Exactas",
-  "Certificación ISO Global",
+  "Protocolos de Calidad",
   "Templado Estructural",
 ];
 

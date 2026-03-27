@@ -37,7 +37,7 @@ function ScaleIcon({ className }: { className?: string }) {
 const BENEFITS = [
   {
     icon: ShieldCheckIcon,
-    title: "Calidad Certificada",
+    title: "Control de Calidad",
     description:
       "Cada pieza de cristal templado se fabrica bajo rigurosos controles de calidad y cumple con las normativas de seguridad vigentes. Garantizamos resistencia, durabilidad y un acabado que supera los estándares de la industria.",
     stats: [
@@ -148,7 +148,7 @@ export function QualityAndSafety() {
             </h2>
             <p className="text-[#373435]/65 text-lg md:text-xl font-medium leading-relaxed mb-6">
               Cada proyecto es respaldado por los pilares que definen nuestro
-              compromiso con la excelencia: calidad certificada, personal
+              compromiso con la excelencia: control de calidad, personal
               capacitado y precios competitivos.
             </p>
             <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#0255D1]/[0.06] to-transparent border border-[#0255D1]/10">
