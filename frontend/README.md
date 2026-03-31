@@ -466,7 +466,7 @@ El archivo `.env.example` documenta estas variables:
 ```env
 SANITY_PROJECT_ID=0bnpr7m2
 SANITY_DATASET=production
-VITE_SITE_URL=https://glass-pro.mx
+VITE_SITE_URL=https://www.glass-pro.mx
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxx
 CONTACT_FORM_TO_EMAIL=contacto@glass-pro.mx
 CONTACT_FORM_FROM_EMAIL=GlassPro Contacto <noreply@glass-pro.mx>

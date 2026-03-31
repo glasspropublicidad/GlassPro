@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://glass-pro.mx";
+const DEFAULT_SITE_URL = "https://www.glass-pro.mx";
 
 export const OG_IMAGE_PATHS = {
   default: "/og/og-architecture.png",
@@ -89,6 +89,7 @@ export function buildSeoMeta({
     { property: "og:title", content: fullTitle },
     { property: "og:description", content: description },
     { property: "og:url", content: canonicalUrl },
+    { property: "og:image:url", content: imageUrl },
     { property: "og:image", content: imageUrl },
     { property: "og:image:secure_url", content: imageUrl },
     ...(imageType ? [{ property: "og:image:type", content: imageType }] : []),

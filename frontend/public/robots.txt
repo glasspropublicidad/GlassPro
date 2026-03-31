@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://glasspro.mx/sitemap.xml
+Sitemap: https://www.glass-pro.mx/sitemap.xml
