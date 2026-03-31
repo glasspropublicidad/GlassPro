@@ -1,12 +1,12 @@
 const DEFAULT_SITE_URL = "https://www.glass-pro.mx";
 
 export const OG_IMAGE_PATHS = {
-  default: "/og/og-architecture.png",
-  home: "/og/og-architecture.png",
-  services: "/og/og-sliding-doors.png",
-  about: "/og/og-office-interior.png",
-  contact: "/og/og-glass-shower.png",
-  blog: "/og/og-glass-balcony.png",
+  default: "/og/og-architecture.jpg",
+  home: "/og/og-architecture.jpg",
+  services: "/og/og-sliding-doors.jpg",
+  about: "/og/og-office-interior.jpg",
+  contact: "/og/og-glass-shower.jpg",
+  blog: "/og/og-glass-balcony.jpg",
 } as const;
 
 const DEFAULT_OG_IMAGE_PATH = OG_IMAGE_PATHS.default;
